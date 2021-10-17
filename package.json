@@ -1,0 +1,35 @@
+{
+  "name": "news-blog",
+  "version": "1.0.0",
+  "description": "blog with news",
+  "main": "src/index.js",
+  "author": "kbuczynski",
+  "license": "ISC",
+  "scripts": {
+    "env-template": "npx env-template",
+    "start": "node src/index.js",
+    "dev": "concurrently npm:watch:*",
+    "watch:server": "nodemon src/index.js",
+    "watch:scss": "node-sass --output-style compressed -w src/views -o src/public/styles"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "node-fetch": "2.6.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.3.0",
+    "nodemon": "^2.0.13",
+    "node-sass": "^6.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kbuczynski/news-blog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kbuczynski/news-blog/issues"
+  },
+  "homepage": "https://github.com/Kbuczynski/news-blog#readme"
+}

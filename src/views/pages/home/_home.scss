@@ -1,0 +1,10 @@
+.home {
+    display: flex;
+    grid-template-columns: 4;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    & * {
+        margin: 1rem;
+    }
+}

@@ -1,0 +1,9 @@
+.articleThumbnail {
+    display: flex;
+    flex-direction: column;
+    max-width: 15vw;
+
+    & * {
+        margin: .7rem 0
+    }
+}
