@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-
 class API {
   constructor(baseURL) {
     this.baseURL = baseURL;
@@ -60,4 +58,4 @@ class API {
   }
 }
 
-module.exports = API;
+export default API

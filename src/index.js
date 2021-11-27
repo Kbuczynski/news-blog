@@ -7,7 +7,9 @@ const handlebars = require("express-handlebars");
 
 const dirHelper = require("./helpers/dirHelper");
 const newsRouter = require("./routes/api/newsRouter");
+const commentsRouter = require("./routes/api/commentsRouter");
 const homeRouter = require("./routes/homeRouter");
+const articleRouter = require("./routes/articleRouter");
 
 const PORT = process.env.PORT || 3000;
 const PATH_PARTIALS = `${__dirname}/views/partials/`;
@@ -29,22 +31,17 @@ app.engine(
   })
 );
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use("*/public", express.static(path.join(__dirname, "public")));
 app.use(cors());
 app.use(express.json());
 
 // REST API routes
 app.use("/api/news", newsRouter);
+app.use("/api/comments", commentsRouter);
 
 // users views routes
 app.use("/", homeRouter);
-app.get("/article", (_, res) =>
-  res.render("pages/article/article", {
-    layout: "layoutDefault",
-    articelId: 123,
-    pageTitle: "article name",
-  })
-);
+app.use("/article", articleRouter);
 
 app.listen(PORT, () =>
   console.log(`App is running on http://127.0.0.1:${PORT}`)

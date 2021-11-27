@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const newsController = require("../../controllers/newsController");
+const newsController = require("../../controllers/api/newsController");
 
 const router = express.Router();
 

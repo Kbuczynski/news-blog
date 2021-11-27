@@ -1,5 +1,7 @@
 <section class="home">
-  {{#each news}}
-    {{> articleThumbnail article=this}}
-  {{/each}}
+  <div class="home__articles">
+    {{#each newsList}}
+      {{> articleThumbnail article=this}}
+    {{/each}}
+  </div>
 </section>

@@ -1,6 +1,12 @@
 # news-blog
 
+
 ## Setup
+
+```sh
+npm i && npm start
+```
+## Development
 
 ### Using Docker
 

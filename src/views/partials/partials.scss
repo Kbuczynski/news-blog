@@ -1,1 +1,15 @@
-@import 'header/header', 'articleThumbnail/articleThumbnail'
+$shadowColor: rgba(0, 0, 0, 0.219);
+
+@mixin customShadow {
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    box-shadow: 1px 1px 1px 1px $shadowColor;
+}
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@import 'header/header', 'articleThumbnail/articleThumbnail', 'search/search', 'footer/footer';

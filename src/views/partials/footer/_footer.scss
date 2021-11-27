@@ -1,0 +1,6 @@
+.footer {
+    width: 100vw;
+    font-weight: bold;
+    @include center;
+    @include customShadow;
+}

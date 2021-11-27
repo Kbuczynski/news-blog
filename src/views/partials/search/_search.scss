@@ -1,0 +1,12 @@
+.search {
+  &__input {
+    width: 40vw;
+    border: none;
+    @include customShadow;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

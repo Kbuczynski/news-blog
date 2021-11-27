@@ -1,8 +1,10 @@
-<article class="articleThumbnail">
-    <img src={{article.img}} />
-    <hr class="articleThumbnail__decorator">
+<article class="articleThumbnail" article-title="{{article.title}}">
+  <div class="articleThumbnail__content">
     <h2>{{article.title}}</h2>
-    <hr class="articleThumbnail__decorator">
     <p>{{article.description}}</p>
-    <hr class="articleThumbnail__decorator">
+  </div>
+
+  <div class="articleThumbnail__more">
+    <a href="/article/{{article.id}}" class="more__read">Read More</a>
+  </div>
 </article>
