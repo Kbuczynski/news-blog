@@ -6,7 +6,7 @@ async function homeController(_, res) {
 
   res.render("pages/home/home", {
     layout: "layoutDefault",
-    pageTitle: "home",
+    pageTitle: "Home",
     newsList
   });
 }

@@ -1,13 +1,18 @@
 const { initialNews } = require("../../data/initialNews");
 const NewsService = require("../../services/newsService");
-const { v1: uuidv1 } = require("uuid");
+const { generateId } = require("../../helpers/generateId");
 
 let news = initialNews;
 const newsService = new NewsService();
 
 exports.getAllNews = (_, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.status(200).send(news);
+
+  try {
+    res.status(200).send(news);
+  } catch (err) {
+    res.send(400).send({ errors: JSON.parse(err.message) });
+  }
 };
 
 exports.getSingleNews = (req, res) => {
@@ -15,7 +20,7 @@ exports.getSingleNews = (req, res) => {
 
   try {
     const { id } = req.params;
-    newsService.isExist(news, id)
+    newsService.isExist(news, id);
     res.status(200).send(...news.filter((n) => n.id === id));
   } catch (err) {
     res.status(400).send({ errors: JSON.parse(err.message) });
@@ -27,9 +32,9 @@ exports.addNews = (req, res) => {
 
   try {
     const { title, header, content, description, author } = req.body;
-    newsService.validate(req.body)
+    newsService.validate(req.body);
     news.push({
-      id: uuidv1(),
+      id: generateId(),
       title,
       header,
       content,
@@ -39,7 +44,7 @@ exports.addNews = (req, res) => {
     res.status(200).send(news);
   } catch (err) {
     res.status(400).send({ errors: JSON.parse(err.message) });
-  }  
+  }
 };
 
 exports.editNews = (req, res) => {
@@ -47,8 +52,8 @@ exports.editNews = (req, res) => {
 
   try {
     const { id, title, header, content, description, author } = req.body;
-    newsService.validate(req.body)
-    newsService.isExist(news, id)
+    newsService.validate(req.body);
+    newsService.isExist(news, id);
     news = news.map((n) =>
       n.id === id
         ? {
@@ -72,7 +77,7 @@ exports.removeNews = (req, res) => {
 
   try {
     const { id } = req.params;
-    newsService.isExist(news, id)
+    newsService.isExist(news, id);
     news = news.filter((n) => n.id !== id);
     res.status(200).send(news);
   } catch (err) {

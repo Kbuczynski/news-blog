@@ -39,7 +39,7 @@ app.use(express.json());
 app.use("/api/news", newsRouter);
 app.use("/api/comments", commentsRouter);
 
-// users views routes
+// views routes
 app.use("/", homeRouter);
 app.use("/article", articleRouter);
 

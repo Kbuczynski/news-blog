@@ -1,7 +1,7 @@
-const { v1: uuidv1 } = require("uuid");
+const { generateId } = require("../helpers/generateId");
 
-const id1 = uuidv1(),
-  id2 = uuidv1();
+const id1 = generateId(),
+  id2 = generateId();
 
 const news1 = {
   id: id1,
@@ -19,7 +19,6 @@ const news2 = {
   id: id2,
 };
 
-const initialNews = Array(1).fill(news1)
-initialNews.push(news2)
+const initialNews = [news1, news2]
 
 exports.initialNews = initialNews;
