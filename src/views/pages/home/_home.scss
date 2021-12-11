@@ -1,9 +1,11 @@
-.home {  
-    &__articles {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-        margin: 1rem 0;
-    }
+.home {
+  min-height: 86.8vh;
+
+  &__articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
 }

@@ -6,8 +6,8 @@ async function articleController(req, res) {
 
   res.render("pages/article/article", {
     layout: "layoutDefault",
-    pageTitle: "article name",
-    news
+    pageTitle: news.title,
+    news: news
   })
 }
 

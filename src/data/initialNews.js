@@ -15,6 +15,7 @@ const news1 = {
 
 const news2 = {
   ...news1,
+  title: "second",
   id: id2,
 };
 

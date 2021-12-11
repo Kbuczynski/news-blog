@@ -1,2 +1,8 @@
-<h1>Article {{news.title}}</h1>
-<p>{{news.description}}</p>
+<section class="article">
+  <section class="article__wrapper">
+    {{> articleContent news}}
+  </section>
+  <section class="article__comments">
+      {{!-- TODO: add article comments component --}}
+  </section>
+</section>

@@ -16,7 +16,7 @@ exports.getSingleNews = (req, res) => {
   try {
     const { id } = req.params;
     newsService.isExist(news, id)
-    res.status(200).send(news.filter((n) => n.id === id));
+    res.status(200).send(...news.filter((n) => n.id === id));
   } catch (err) {
     res.status(400).send({ errors: JSON.parse(err.message) });
   }
