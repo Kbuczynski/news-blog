@@ -1,10 +1,9 @@
 const express = require("express");
-const cors = require("cors");
 
 const { articleController } = require("../controllers/articleController");
 
 const router = express.Router();
 
-router.get("/:id", cors(), articleController);
+router.get("/:id", articleController);
 
 module.exports = router;

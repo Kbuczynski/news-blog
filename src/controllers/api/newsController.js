@@ -1,86 +1,49 @@
-const { initialNews } = require("../../data/initialNews");
-const NewsService = require("../../services/newsService");
-const { generateId } = require("../../helpers/generateId");
-
-let news = initialNews;
-const newsService = new NewsService();
-
 exports.getAllNews = (_, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-
   try {
-    res.status(200).send(news);
+    const response = newsCommentsFacade.getAllNews();
+    res.status(200).send(response);
   } catch (err) {
-    res.send(400).send({ errors: JSON.parse(err.message) });
+    console.error(err.message);
+    res.status(400).send("Something went wrong.");
   }
 };
 
 exports.getSingleNews = (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-
   try {
-    const { id } = req.params;
-    newsService.isExist(news, id);
-    res.status(200).send(...news.filter((n) => n.id === id));
+    const response = newsCommentsFacade.getSingleNews(req.params.id);
+    res.status(200).send(response);
   } catch (err) {
-    res.status(400).send({ errors: JSON.parse(err.message) });
+    console.error(err.message);
+    res.status(400).send("Something went wrong.");
   }
 };
 
 exports.addNews = (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-
   try {
-    const { title, header, content, description, author } = req.body;
-    newsService.validate(req.body);
-    news.push({
-      id: generateId(),
-      title,
-      header,
-      content,
-      description,
-      author,
-    });
-    res.status(200).send(news);
+    const response = newsCommentsFacade.addNews(req.body);
+    res.status(200).send(response);
   } catch (err) {
-    res.status(400).send({ errors: JSON.parse(err.message) });
+    console.error(err.message);
+    res.status(400).send("Something went wrong.");
   }
 };
 
 exports.editNews = (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-
   try {
-    const { id, title, header, content, description, author } = req.body;
-    newsService.validate(req.body);
-    newsService.isExist(news, id);
-    news = news.map((n) =>
-      n.id === id
-        ? {
-            ...n,
-            title,
-            header,
-            content,
-            description,
-            author,
-          }
-        : n
-    );
-    res.status(200).send(news);
+    const response = newsCommentsFacade.editNews(req.body);
+    res.status(200).send(response);
   } catch (err) {
-    res.status(400).send({ errors: JSON.parse(err.message) });
+    console.error(err.message);
+    res.status(400).send("Something went wrong.");
   }
 };
 
 exports.removeNews = (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-
   try {
-    const { id } = req.params;
-    newsService.isExist(news, id);
-    news = news.filter((n) => n.id !== id);
-    res.status(200).send(news);
+    const response = newsCommentsFacade.removeNews(req.params.id)
+    res.status(200).send(response);
   } catch (err) {
-    res.status(400).send({ errors: JSON.parse(err.message) });
+    console.error(err.message);
+    res.status(400).send("Something went wrong.");
   }
 };

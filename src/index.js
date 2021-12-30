@@ -11,6 +11,9 @@ const commentsRouter = require("./routes/api/commentsRouter");
 const homeRouter = require("./routes/homeRouter");
 const articleRouter = require("./routes/articleRouter");
 
+const API = require("./helpers/API");
+const NewsCommentsFacade = require("./facades/newsCommentsFacade");
+
 const PORT = process.env.PORT || 3000;
 const PATH_PARTIALS = `${__dirname}/views/partials/`;
 const PATH_LAYOUTS = `${__dirname}/views/layouts`;
@@ -32,14 +35,16 @@ app.engine(
 );
 
 app.use("*/public", express.static(path.join(__dirname, "public")));
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+app.options("*", cors());
 
-// REST API routes
+global.api = new API(process.env.API_URL);
+global.newsCommentsFacade = new NewsCommentsFacade();
+
 app.use("/api/news", newsRouter);
 app.use("/api/comments", commentsRouter);
 
-// views routes
 app.use("/", homeRouter);
 app.use("/article", articleRouter);
 

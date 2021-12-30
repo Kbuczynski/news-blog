@@ -3,6 +3,8 @@
     {{> articleContent news}}
   </section>
   <section class="article__comments">
-      {{!-- TODO: add article comments component --}}
+    {{#each comments}}
+      {{> commentsList comments=this}}
+    {{/each}}
   </section>
 </section>

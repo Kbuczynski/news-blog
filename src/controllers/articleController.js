@@ -1,14 +1,17 @@
-const API = require("../helpers/API");
-
 async function articleController(req, res) {
-  const api = new API(process.env.API_URL);
   const news = await api.get(`news/${req.params.id}`);
+  const comments = await api.get(`comments/${req.params.id}`);
 
   res.render("pages/article/article", {
     layout: "layoutDefault",
-    pageTitle: news.title,
-    news: news
-  })
+    pageTitle: news.data[0].title,
+    news: news.data[0],
+    newsMessage: news.message,
+    newsErrors: news.errors,
+    comments: comments.data,
+    commentsMessage: comments.message,
+    commentsErrors: comments.errors,
+  });
 }
 
 exports.articleController = articleController;
