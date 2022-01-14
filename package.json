@@ -8,10 +8,11 @@
   "scripts": {
     "env-template": "npx env-template",
     "start": "node src/index.js",
+    "dev:docker": "docker-compose up",
+    "dev:docker:build": "docker-compose up --build",
     "dev": "concurrently npm:watch:*",
     "watch:server": "nodemon src/index.js",
     "watch:scss": "node-sass --output-style compressed -w src/views -o src/public/styles",
-    "deploy": "heroku container:release web -a news-blog-tf"
   },
   "dependencies": {
     "cors": "^2.8.5",
