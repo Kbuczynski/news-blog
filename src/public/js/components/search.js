@@ -21,7 +21,7 @@ async function searchNews() {
   let searchValue = '';
 
   searchInput.value = ''
-
+  
   searchInput.addEventListener("input", (e) => {
     searchValue = e.target.value;
   });

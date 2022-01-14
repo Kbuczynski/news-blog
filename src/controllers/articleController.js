@@ -5,12 +5,8 @@ async function articleController(req, res) {
   res.render("pages/article/article", {
     layout: "layoutDefault",
     pageTitle: news.data[0].title,
-    news: news.data[0],
-    newsMessage: news.message,
-    newsErrors: news.errors,
-    comments: comments.data,
-    commentsMessage: comments.message,
-    commentsErrors: comments.errors,
+    news: news,
+    comments: comments
   });
 }
 

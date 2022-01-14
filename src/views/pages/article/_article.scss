@@ -1,4 +1,18 @@
 .article {
   min-height: 88.4vh;
   padding: 5%;
+
+  & > * {
+    margin: 2rem 0;
+
+    &:first-child {
+      margin: 0;
+    }
+  }
+
+  &__form {
+    .form__response {
+      margin: .5rem 0;
+    }
+  }
 }

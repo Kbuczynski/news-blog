@@ -15,8 +15,10 @@ class NewsService {
   }
 
   getAllNews() {
+    let message = "";
     const data = this._news;
-    return this._createResponse({ data });
+    if (!data.length) message = "There are no news."
+    return this._createResponse({ data, message });
   }
 
   getSingleNews(id) {
@@ -68,7 +70,7 @@ class NewsService {
 
     if (!errors.length) {
       data = this._news.filter((n) => n.id !== id);
-      this._news = this._news.filter((n) => n !== data[0]);
+      this._news = this._news.filter((n) => n.id !== id);
       message = "News was removed correctly";
     }
 

@@ -1,7 +1,11 @@
 <section class="home">
   <div class="home__articles">
-    {{#each newsList}}
-      {{> articleThumbnail article=this}}
-    {{/each}}
+    {{#if newsList.data}}
+      {{#each newsList.data}}
+        {{> articleThumbnail article=this}}
+      {{/each}}
+    {{else}}
+      {{> message message=newsList.message}}
+    {{/if}}
   </div>
 </section>

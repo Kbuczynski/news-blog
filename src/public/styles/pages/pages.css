@@ -1,1 +1,1 @@
-.home{min-height:86.8vh}.home__articles{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin:1rem 0}.article{min-height:88.4vh;padding:5%}
+.home{min-height:86.8vh}.home__articles{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin:1rem 0}.article{min-height:88.4vh;padding:5%}.article>*{margin:2rem 0}.article>*:first-child{margin:0}.article__form .form__response{margin:.5rem 0}

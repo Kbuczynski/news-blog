@@ -1,10 +1,20 @@
 <section class="article">
   <section class="article__wrapper">
-    {{> articleContent news}}
+    {{#each news.data}}
+      {{> articleContent news=this}}    
+    {{/each}}
   </section>
   <section class="article__comments">
-    {{#each comments}}
-      {{> commentsList comments=this}}
-    {{/each}}
+    {{#if comments.data}}
+      {{#each comments.data}}
+        {{> comment comment=this}}
+      {{/each}}
+    {{else}}
+      {{> message message=comments.message}}
+    {{/if}}
+  </section>
+  <section class="article__form">
+    {{> addComment}}
+    <p class="form__response"></p>
   </section>
 </section>
