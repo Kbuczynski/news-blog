@@ -5,19 +5,9 @@ const { initialUsers } = require('../../data/initialUsers');
 
 const usersService = new UsersService(initialUsers);
 
-exports.getAllUsers = (res) => {
+exports.getAllUsers = (_, res) => {
   try {
     const response = usersService.getAllUsers();
-    res.status(200).send(response);
-  } catch (err) {
-    console.error(err.message);
-    res.status(400).send('Something went wrong.');
-  }
-};
-
-exports.login = (req, res) => {
-  try {
-    const response = usersService.login(req.body);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);
@@ -28,6 +18,16 @@ exports.login = (req, res) => {
 exports.register = (req, res) => {
   try {
     const response = usersService.register(req.body);
+    res.status(200).send(response);
+  } catch (err) {
+    console.error(err.message);
+    res.status(400).send('Something went wrong.');
+  }
+};
+
+exports.login = (req, res) => {
+  try {
+    const response = usersService.login(req.body);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);

@@ -38,6 +38,13 @@ npm i && npm run dev
 | addComment | POST | /api/comments/add/ | newsId, content, author
 | removeComment | DELETE | /api/comments/remove/:id | -
 
+### Users
+| Name | Method | Path | Body |
+| ---- | ------ | ---- | ---- |
+| getAllUsers | GET | /api/users/ | -
+| register | POST | /api/users/register | login, password
+| login  | POST | /api/users/login | login, password
+
 ## Packages
 
 | Package | README |

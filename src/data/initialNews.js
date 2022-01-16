@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 const { generateId } = require('../helpers/generateId');
 
 const id1 = generateId();
