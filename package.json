@@ -1,20 +1,23 @@
 {
   "name": "news-blog",
   "version": "1.0.0",
-  "description": "blog with news",
+  "description": "News blog",
   "main": "src/index.js",
   "author": "kbuczynski",
   "license": "ISC",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
-    "env-template": "npx env-template",
     "start": "node src/index.js",
-    "lint": "npx eslint src",
-    "lint:fix": "npx eslint src --fix",
+    "dev": "concurrently npm:watch:*",
     "dev:docker": "docker-compose up",
     "dev:docker:build": "docker-compose up --build",
-    "dev": "concurrently npm:watch:*",
     "watch:server": "nodemon src/index.js",
-    "watch:scss": "node-sass --output-style compressed -w src/views -o src/public/styles"
+    "watch:scss": "node-sass --output-style compressed -w src/views -o src/public/styles",
+    "lint": "npx eslint src",
+    "lint:fix": "npx eslint src --fix",
+    "env-template": "npx env-template"
   },
   "dependencies": {
     "cors": "^2.8.5",
