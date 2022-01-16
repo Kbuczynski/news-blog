@@ -11,7 +11,7 @@ npm i && npm start
 ### Using Docker
 
 ```sh
-docker-compose up --build
+npm run dev:docker:build
 ```
 
 ### Using npm scripts
