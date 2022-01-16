@@ -1,3 +1,3 @@
-import comments from "./components/comments.js";
+import comments from './components/comments.js';
 
 comments();

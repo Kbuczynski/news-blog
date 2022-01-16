@@ -1,4 +1,4 @@
-const { generateId } = require("../helpers/generateId");
+const { generateId } = require('../helpers/generateId');
 
 // TODO: add added time
 
@@ -13,23 +13,23 @@ const { generateId } = require("../helpers/generateId");
 // }
 
 function generateInitialComments(newsId) {
-  const id1 = generateId(),
-    id2 = generateId();
+  const id1 = generateId();
+  const id2 = generateId();
 
   const comment1 = {
     id: id1,
     newsId,
     // parent_id: null,
-    content: "lorem ipsum comment tested",
-    author: "Jan Kowalski",
+    content: 'lorem ipsum comment tested',
+    author: 'Jan Kowalski',
   };
 
   const comment2 = {
     id: id2,
     newsId,
     // parent_id: id1,
-    content: "lorem ipsum comment tested 2",
-    author: "John Doe",
+    content: 'lorem ipsum comment tested 2',
+    author: 'John Doe',
   };
 
   return [comment1, comment2];

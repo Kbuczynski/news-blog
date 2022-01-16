@@ -8,11 +8,13 @@
   "scripts": {
     "env-template": "npx env-template",
     "start": "node src/index.js",
+    "linit": "npx eslint src",
+    "linit:fix": "npx eslint src --fix",
     "dev:docker": "docker-compose up",
     "dev:docker:build": "docker-compose up --build",
     "dev": "concurrently npm:watch:*",
     "watch:server": "nodemon src/index.js",
-    "watch:scss": "node-sass --output-style compressed -w src/views -o src/public/styles",
+    "watch:scss": "node-sass --output-style compressed -w src/views -o src/public/styles"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -24,8 +26,11 @@
   },
   "devDependencies": {
     "concurrently": "^6.3.0",
-    "nodemon": "^2.0.13",
-    "node-sass": "^6.0.1"
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.13"
   },
   "repository": {
     "type": "git",

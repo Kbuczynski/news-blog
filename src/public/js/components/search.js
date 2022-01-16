@@ -10,33 +10,33 @@
 // }
 
 function getNewsNodes() {
-  return [...document.querySelectorAll('.articleThumbnail')]
+  return [...document.querySelectorAll('.articleThumbnail')];
 }
 
 async function searchNews() {
-  const searchInput = document.querySelector(".search__input");
-  const searchBtn = document.querySelector(".search__btn");
+  const searchInput = document.querySelector('.search__input');
+  const searchBtn = document.querySelector('.search__btn');
   // const titles = await getTitles();
   const newsNodes = getNewsNodes();
   let searchValue = '';
 
-  searchInput.value = ''
-  
-  searchInput.addEventListener("input", (e) => {
+  searchInput.value = '';
+
+  searchInput.addEventListener('input', (e) => {
     searchValue = e.target.value;
   });
 
-  searchBtn.addEventListener("click", (e) => {
+  searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    newsNodes.forEach(n => {
-      const nodeTitle = n.getAttribute('article-title').toLowerCase()
-      const searchTitle = searchValue.toLowerCase()
+    newsNodes.forEach((n) => {
+      const nodeTitle = n.getAttribute('article-title').toLowerCase();
+      const searchTitle = searchValue.toLowerCase();
 
-      if (!nodeTitle.includes(searchTitle)) n.classList.add('articleThumbnail--hide')
-      else n.classList.remove('articleThumbnail--hide')
-    })
-  })
+      if (!nodeTitle.includes(searchTitle)) n.classList.add('articleThumbnail--hide');
+      else n.classList.remove('articleThumbnail--hide');
+    });
+  });
 }
 
 export default searchNews;

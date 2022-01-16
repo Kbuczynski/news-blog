@@ -17,7 +17,7 @@ class API {
     try {
       const response = await fetch(
         `${this.baseURL}/${ENDPOINT}`,
-        this._getConfig("POST", data)
+        this._getConfig('POST', data),
       );
       return response.json();
     } catch (err) {
@@ -29,7 +29,7 @@ class API {
     try {
       const response = await fetch(
         `${this.baseURL}/${ENDPOINT}`,
-        this._getConfig("PUT", data)
+        this._getConfig('PUT', data),
       );
       return response.json();
     } catch (err) {
@@ -41,7 +41,7 @@ class API {
     try {
       const response = await fetch(
         `${this.baseURL}/${ENDPOINT}`,
-        this._getConfig("DELETE", data)
+        this._getConfig('DELETE', data),
       );
       return response.json();
     } catch (err) {
@@ -51,11 +51,11 @@ class API {
 
   _getConfig(method, data) {
     return {
-      method: method,
-      headers: { "Content-Type": "application/json; charset=UTF-8" },
+      method,
+      headers: { 'Content-Type': 'application/json; charset=UTF-8' },
       body: JSON.stringify(data),
     };
   }
 }
 
-export default API
+export default API;

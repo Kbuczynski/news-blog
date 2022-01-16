@@ -1,20 +1,18 @@
-const NewsService = require("../services/newsService");
-const CommentsService = require("../services/commentsService");
+const NewsService = require('../services/newsService');
+const CommentsService = require('../services/commentsService');
 
-const { initialNews } = require("../data/initialNews");
-const { generateInitialComments } = require("../data/initialComments");
+const { initialNews } = require('../data/initialNews');
+const { generateInitialComments } = require('../data/initialComments');
 
 class NewsCommentsFacade {
   constructor() {
     this._newsService = new NewsService(initialNews);
     this._commentsService = new CommentsService(
-      generateInitialComments(initialNews[0].id)
+      generateInitialComments(initialNews[0].id),
     );
   }
 
-  isNewsExist = (id) => {
-    return this._newsService.isExist(id);
-  };
+  isNewsExist = (id) => this._newsService.isExist(id);
 
   getAllNews() {
     return this._newsService.getAllNews();

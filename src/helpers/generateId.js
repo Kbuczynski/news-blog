@@ -1,4 +1,4 @@
-const { v1: uuidv1 } = require("uuid");
+const { v1: uuidv1 } = require('uuid');
 
 const generateId = () => uuidv1();
 

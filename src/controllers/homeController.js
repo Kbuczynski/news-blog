@@ -1,10 +1,12 @@
-async function homeController(_, res) {
-  const newsList = await api.get("news");
+/* eslint-disable no-undef */
 
-  res.render("pages/home/home", {
-    layout: "layoutDefault",
-    pageTitle: "Home",
-    newsList: newsList,
+async function homeController(_, res) {
+  const newsList = await api.get('news');
+
+  res.render('pages/home/home', {
+    layout: 'layoutDefault',
+    pageTitle: 'Home',
+    newsList,
   });
 }
 
