@@ -8,8 +8,8 @@
   "scripts": {
     "env-template": "npx env-template",
     "start": "node src/index.js",
-    "linit": "npx eslint src",
-    "linit:fix": "npx eslint src --fix",
+    "lint": "npx eslint src",
+    "lint:fix": "npx eslint src --fix",
     "dev:docker": "docker-compose up",
     "dev:docker:build": "docker-compose up --build",
     "dev": "concurrently npm:watch:*",
