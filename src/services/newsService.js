@@ -4,6 +4,7 @@ class NewsService extends TemplateService {
   constructor(news) {
     super();
     this._news = news || [];
+    this._newsProperties = ['id', 'title', 'header', 'content', 'description', 'author'];
   }
 
   getAllNews() {
@@ -40,20 +41,25 @@ class NewsService extends TemplateService {
     let message = '';
     const errors = this.isExist(news.id);
     const oldNews = this._news.filter((n) => n.id === news.id);
+    const data = [];
     const updatedNews = {
       ...oldNews[0],
       ...news,
     };
+
     !errors.length
       && this._validate(updatedNews).length
       && errors.push(this._validate(updatedNews));
 
+    !this.isProperData(this._newsProperties, updatedNews) && errors.push('Additional property was added.');
+
     if (!errors.length) {
       this._news = this._news.map((n) => (n.id === news.id ? updatedNews : n));
+      data.push(updatedNews);
       message = 'News was edited correclty.';
     }
 
-    return this.createResponse({ data: updatedNews, message, errors });
+    return this.createResponse({ data, message, errors });
   }
 
   removeNews(id) {

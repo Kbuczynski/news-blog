@@ -126,8 +126,49 @@ describe('newsService:', () => {
     });
   });
 
-  describe('editNews', () => {
-    // TODO: tests for edit news
+  describe.only('editNews', () => {
+    it('should edit news and return updated news with proper message if new news data was correct', () => {
+      const newNews = {
+        id: '1',
+        title: 'Updated title',
+        header: 'Updated header',
+      };
+
+      const expected = response({ news: [{ ...newsList[0], ...newNews }], message: 'News was edited correclty.' });
+      expect(newsService.editNews(newNews)).toEqual(expected);
+    });
+
+    it('should return array with proper error message if news with given id not exist', () => {
+      const newNews = {
+        id: '100',
+        title: 'Updated title',
+        header: 'Updated header',
+      };
+
+      const expected = response({ errors: ['News with given id does not exist.'] });
+      expect(newsService.editNews(newNews)).toEqual(expected);
+    });
+
+    it('should return array with proper error messages if data was invalid', () => {
+      const newNews = {
+        id: '1',
+        title: '',
+        header: 'Updated header',
+      };
+
+      const expected = response({ errors: ['Title length can not be empty.'] });
+      expect(newsService.editNews(newNews)).toEqual(expected);
+    });
+
+    it('should return array with proper error message if additional property was passed', () => {
+      const newNews = {
+        id: '1',
+        test: 'New property',
+      };
+
+      const expected = response({ errors: ['Additional property was added.'] });
+      expect(newsService.editNews(newNews)).toEqual(expected);
+    });
   });
 
   describe('removeNews', () => {
