@@ -1,5 +1,4 @@
-const TemplateService = require('./templateService');
-const { generateId } = require('../helpers/generateId');
+const TemplateService = require('../helpers/templateService');
 
 class NewsService extends TemplateService {
   constructor(users) {
@@ -20,7 +19,7 @@ class NewsService extends TemplateService {
     errors.push(...this._isExist(user));
 
     const data = {
-      id: generateId(),
+      id: this.setId(),
       ...user,
     };
 

@@ -1,10 +1,9 @@
-const TemplateService = require('./templateService');
-const { generateId } = require('../helpers/generateId');
+const TemplateService = require('../helpers/templateService');
 
 class NewsService extends TemplateService {
   constructor(news) {
     super();
-    this._news = news;
+    this._news = news || [];
   }
 
   getAllNews() {
@@ -23,12 +22,13 @@ class NewsService extends TemplateService {
   addNews(news) {
     let message = '';
     const errors = this._validate(news);
-    const data = {
-      id: generateId(),
-      ...news,
-    };
+    let data = [];
 
     if (!errors.length) {
+      data = {
+        id: this.setId(),
+        ...news,
+      };
       this._news.push(data);
       message = 'News was added correclty.';
     }
@@ -62,7 +62,7 @@ class NewsService extends TemplateService {
     let data = [];
 
     if (!errors.length) {
-      data = this._news.filter((n) => n.id !== id);
+      data = this._news.filter((n) => n.id === id);
       this._news = this._news.filter((n) => n.id !== id);
       message = 'News was removed correctly';
     }
@@ -70,7 +70,7 @@ class NewsService extends TemplateService {
     return this.createResponse({ data, message, errors });
   }
 
-  _validate(news) {
+  _validate(news = {}) {
     const {
       title, header, content, description, author,
     } = news;
@@ -106,10 +106,7 @@ class NewsService extends TemplateService {
 
   isExist(id) {
     const errors = [];
-
-    if (!id) errors.push('Id does not exist.');
-    if (!this._news.some((n) => n.id === id)) errors.push('News with given id does not exist.');
-
+    if (!id || !this._news.some((n) => n.id === id)) errors.push('News with given id does not exist.');
     return errors;
   }
 }

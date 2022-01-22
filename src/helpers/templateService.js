@@ -1,3 +1,5 @@
+const { generateId } = require('./generateId');
+
 class TemplateService {
   createResponse({ data, message = '', errors = [] }) {
     return {
@@ -5,6 +7,10 @@ class TemplateService {
       message,
       errors: errors.flat(Infinity),
     };
+  }
+
+  setId() {
+    return generateId();
   }
 }
 

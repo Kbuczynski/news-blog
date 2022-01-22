@@ -3,7 +3,6 @@ class API {
     this.baseURL = baseURL;
   }
 
-  // TODO: handle params
   async get(ENDPOINT) {
     try {
       const response = await fetch(`${this.baseURL}/${ENDPOINT}`);

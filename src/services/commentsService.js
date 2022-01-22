@@ -1,5 +1,4 @@
-const TemplateService = require('./templateService');
-const { generateId } = require('../helpers/generateId');
+const TemplateService = require('../helpers/templateService');
 
 class CommentsService extends TemplateService {
   constructor(comments) {
@@ -24,7 +23,7 @@ class CommentsService extends TemplateService {
       && errors.push(this._validate(comment));
 
     const data = {
-      id: generateId(),
+      id: this.setId(),
       ...comment,
     };
 

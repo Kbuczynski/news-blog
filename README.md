@@ -48,7 +48,8 @@ npm i && npm run dev
 ## Packages
 
 | Package | README |
-| ------ | ------ |
+| ------- | ------ |
 | Express | https://www.npmjs.com/package/express |
 | Handlebars | https://www.npmjs.com/package/handlebars |
 | SASS | https://www.npmjs.com/package/node-sass |
+| Jest | https://www.npmjs.com/package/jest
