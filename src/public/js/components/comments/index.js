@@ -55,7 +55,7 @@ async function addComment() {
       createMessage(response.message, formResponse);
       createComment(content.value, author.value, commentsWrapper);
       content.value = '';
-      author.value = '';
+      if (!author.hasAttribute('disabled')) author.value = '';
       info && info.classList.add('hide');
       setTimeout(() => {
         formResponse.textContent = '';

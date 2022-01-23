@@ -1,11 +1,12 @@
 .articleThumbnail {
+  @include customShadow;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   flex-direction: column;
   padding: 0.7rem 1rem;
-  @include customShadow;
   max-width: 20rem;
+  border-radius: 10px;
 
   &--hide {
     display: none;

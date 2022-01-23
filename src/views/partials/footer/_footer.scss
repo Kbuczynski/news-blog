@@ -1,6 +1,7 @@
 .footer {
+    @include center;
+    @include customShadow($top: true);
     width: 100vw;
     font-weight: bold;
-    @include center;
-    @include customShadow;
+    padding: .75rem 0;
 }

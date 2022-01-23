@@ -1,5 +1,5 @@
 <form class="addComment">
     <input class="addComment__content" placeholder="Enter comment" required></input>
-    <input class="addComment__author" placeholder="Enter your name" required></input>
-    <button class="addComment__submit" type="submit">Add comment</button>
+    <input class="addComment__author" placeholder="Enter your name" required {{#if user}}value="{{user.login}}" disabled{{/if}}></input>
+    {{> button class="addComment__submit" type="submit" text="Add comment"}}
 </form>

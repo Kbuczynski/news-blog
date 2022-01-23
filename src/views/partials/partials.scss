@@ -1,9 +1,13 @@
 $shadowColor: rgba(0, 0, 0, 0.219);
 
-@mixin customShadow {
-    border-radius: 10px;
-    padding: 0.7rem 1rem;
-    box-shadow: 1px 1px 1px 1px $shadowColor;
+@mixin customShadow($top: false) {
+    @if $top {
+        box-shadow: 0px 0px 1px 1px $shadowColor;
+    } @else {
+        box-shadow: 1px 1px 1px 1px $shadowColor;
+    }
+
+    transition: box-shadow .1s ease;
 }
 
 @mixin center {
@@ -16,4 +20,4 @@ $shadowColor: rgba(0, 0, 0, 0.219);
     display: none;
 }
 
-@import 'header/header', 'articleThumbnail/articleThumbnail', 'search/search', 'footer/footer', 'articleContent/articleContent', 'comment/comment';
+@import 'button/button', 'header/header', 'articleThumbnail/articleThumbnail', 'search/search', 'footer/footer', 'articleContent/articleContent', 'comment/comment';

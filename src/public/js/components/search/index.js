@@ -3,7 +3,7 @@ function handleSearchParam(value) {
 }
 
 const searchInput = document.querySelector('.search__input');
-const searchBtn = document.querySelector('.search__btn');
+const searchBtn = document.querySelector('.search__submit');
 let searchValue = '';
 
 // eslint-disable-next-line no-return-assign

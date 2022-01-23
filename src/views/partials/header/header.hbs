@@ -3,5 +3,15 @@
     <div class="header__search">
         {{> search}}
     </div>
-    <button class="header__login">Login</button>
+    {{#if login}}
+        <div>
+            {{> button class="header__addNews" text="Add news"}}
+            {{> button class="header__register" text="Register"}}
+        </div>
+    {{else}}
+        <div>
+            {{> button class="header__login" text="Login"}}
+            {{> button class="header__register" text="Register"}}
+        </div>
+    {{/if}}
 </header>
