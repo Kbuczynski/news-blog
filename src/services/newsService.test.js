@@ -26,6 +26,18 @@ describe('newsService:', () => {
     newsService = new NewsService(newsList);
   });
 
+  describe('constructor', () => {
+    it('should return news list if news list was passed', () => {
+      const classInstance = new NewsService(newsList);
+      expect(classInstance._news).toEqual(newsList);
+    });
+
+    it('should return empty array if news list was not passed', () => {
+      const classInstance = new NewsService();
+      expect(classInstance._news).toEqual([]);
+    });
+  });
+
   describe('getAllNews', () => {
     it('should return all news if newsList exist', () => {
       const expected = response({ news: newsList });
@@ -126,7 +138,7 @@ describe('newsService:', () => {
     });
   });
 
-  describe.only('editNews', () => {
+  describe('editNews', () => {
     it('should edit news and return updated news with proper message if new news data was correct', () => {
       const newNews = {
         id: '1',
