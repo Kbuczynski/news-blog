@@ -20,4 +20,19 @@ $shadowColor: rgba(0, 0, 0, 0.219);
     display: none;
 }
 
-@import 'button/button', 'header/header', 'articleThumbnail/articleThumbnail', 'search/search', 'footer/footer', 'articleContent/articleContent', 'comment/comment';
+// atoms 
+@import 'atoms/button/button', 
+        'atoms/comment/comment', 
+        'atoms/input/input', 
+        'atoms/message/message';
+
+// molecules
+@import 'molecules/addComment/addComment',
+        'molecules/articleContent/articleContent', 
+        'molecules/articleThumbnail/articleThumbnail',
+        'molecules/header/header',
+        'molecules/search/search';
+
+// organisms
+@import 'organisms/header/header',
+        'organisms/footer/footer';

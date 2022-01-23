@@ -16,8 +16,10 @@ const API = require('./helpers/API');
 const NewsCommentsFacade = require('./facades/newsCommentsFacade');
 
 const PORT = process.env.PORT || 3000;
-const PATH_PARTIALS = `${__dirname}/views/partials/`;
 const PATH_LAYOUTS = `${__dirname}/views/layouts`;
+const PATH_PARTIALS = [
+  `${__dirname}/views/partials/atoms`, `${__dirname}/views/partials/molecules`, `${__dirname}/views/partials/organisms`,
+];
 const app = express();
 
 app.set('view engine', 'hbs');
@@ -29,9 +31,7 @@ app.engine(
     extname: 'hbs',
     defaultLayout: 'defaultLayout',
     layoutsDir: PATH_LAYOUTS,
-    partialsDir: dirHelper
-      .getDirectories(PATH_PARTIALS)
-      .map((name) => `${PATH_PARTIALS}${name}`),
+    partialsDir: PATH_PARTIALS.flatMap((p) => dirHelper.getDirectories(p).map((name) => `${p}/${name}`)),
   }),
 );
 
