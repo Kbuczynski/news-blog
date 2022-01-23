@@ -129,8 +129,8 @@ describe('newsService:', () => {
         errors: [
           'Title length can not be longer than 20.',
           'Header length can not be longer than 50.',
-          'Content length can not be longer than 250.',
-          'Description length can not be longer than 250.',
+          'Content length can not be longer than 500.',
+          'Description length can not be longer than 200.',
           'Author length can not be longer than 50.'],
       });
       expect(newsService.addNews(newNews)).toEqual(expected);

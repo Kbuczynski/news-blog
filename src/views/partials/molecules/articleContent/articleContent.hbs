@@ -1,6 +1,10 @@
-<article class="articelContent">
-  <h1 class="articelContent__title">{{news.title}}</h1>
-  <p class="articelContent__header">{{news.description}}</p>
-  <p class="articelContent__content">{{news.content}}</p>
-  <p class="articelContent__author">Author:&nbsp;<span>{{news.author}}</span></p>
-</article>
+{{#if news.data}}
+  <article class="articel-content">
+    <h1 class="articel-content__title">{{news.data.title}}</h1>
+    <p class="articel-content__header">{{news.data.description}}</p>
+    <p class="articel-content__content">{{news.data.content}}</p>
+    <p class="articel-content__author">Author:&nbsp;<span>{{news.data.author}}</span></p>
+  </article>
+{{else}}
+  {{> message message=news.errors error="true"}}
+{{/if}}

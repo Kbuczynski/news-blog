@@ -2,11 +2,8 @@
 
 const { generateId } = require('../helpers/generateId');
 
-const id1 = generateId();
-const id2 = generateId();
-
 const news1 = {
-  id: id1,
+  id: generateId(),
   title: 'The first news',
   header: 'header 123',
   content: 'very long content teested!!!!!!',
@@ -18,9 +15,18 @@ const news1 = {
 const news2 = {
   ...news1,
   title: 'second',
-  id: id2,
+  id: generateId(),
 };
 
-const initialNews = [news1, news2];
+const news3 = {
+  id: generateId(),
+  title: 'The longest title lo',
+  header: 'The longest header lorem ipsum lorem ipsum lorem i',
+  content: 'The longest content lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ',
+  description: 'The longest description lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lo',
+  author: 'Johnnnnnnnnnnnnnnnnnnnnn Doeeeeeeeeeeeeeeeeeeeeeee',
+};
+
+const initialNews = [news1, news2, news3];
 
 exports.initialNews = initialNews;

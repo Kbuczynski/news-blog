@@ -8,8 +8,12 @@ async function articleController(req, res) {
 
   res.render('pages/article/article', {
     layout: 'layoutDefault',
-    pageTitle: news.data[0].title,
-    news,
+    pageTitle: news.data[0]?.title,
+    news: {
+      data: news.data[0],
+      message: news.message,
+      errors: news.errors.join(' '),
+    },
     comments,
     login: !!user.length,
     user: user[0] || [],

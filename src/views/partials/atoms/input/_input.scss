@@ -1,9 +1,16 @@
-.inputGroup {
-    &__label {
+.input-group {
+  display: flex;
+  flex-direction: column;
 
-    }
+  &__label {
+    padding: 0.5rem 0;
+  }
 
-    &__input {
-        
-    }
+  &__input {
+    @include custom-shadow($top: true);
+
+    width: 100%;
+    border: none;
+    padding: 0.5rem;
+  }
 }

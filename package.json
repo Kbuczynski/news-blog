@@ -17,6 +17,8 @@
     "watch:scss": "node-sass --output-style compressed -w src/views -o src/public/styles",
     "lint": "npx eslint src",
     "lint:fix": "npx eslint src --fix",
+    "lint:scss": "npx stylelint '**/*.scss'",
+    "lint:scss:fix": "npx stylelint '**/*.scss' --fix",
     "env-template": "npx env-template",
     "test": "jest src/",
     "test:watch": "jest src/ --watch",
@@ -37,7 +39,9 @@
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.4.7",
     "node-sass": "^7.0.1",
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "stylelint": "^14.2.0",
+    "stylelint-config-standard-scss": "^3.0.0"
   },
   "repository": {
     "type": "git",

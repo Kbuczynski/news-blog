@@ -2,13 +2,14 @@
   position: relative;
 
   &__input {
-    @include customShadow;
+    @include custom-shadow;
+
     width: 40vw;
     border: none;
     font-size: 1rem;
     border-radius: 10px;
     padding: 0.7rem 1rem;
-    
+
     @media screen and (max-width: 700px) {
       width: 100%;
     }

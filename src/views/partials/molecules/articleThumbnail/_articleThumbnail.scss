@@ -1,5 +1,6 @@
-.articleThumbnail {
-  @include customShadow;
+.article-thumbnail {
+  @include custom-shadow;
+
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -18,7 +19,7 @@
 
   &__content {
     & > * {
-      padding: .5rem 0;
+      padding: 0.5rem 0;
     }
   }
 

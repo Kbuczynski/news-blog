@@ -1,0 +1,13 @@
+.comment-add {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  & > * {
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
+}

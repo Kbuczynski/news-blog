@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 // TODO: refactor to class
-// TODO: handle removing (show info message if 0 comments)
+// TODO: handle removing
 
 function createMessage(text, node) {
   // eslint-disable-next-line no-param-reassign
@@ -9,37 +9,26 @@ function createMessage(text, node) {
 }
 
 function createComment(content, author, node) {
-  const div = document.createElement('div');
-  const pContent = document.createElement('p');
-  const pAuthor = document.createElement('p');
+  const newComment = `
+    <div class="comment">
+      <p class="comment__content">${content}</p>
+      <p class="comment__author">Author:&nbsp;<span>${author}</span></p>
+    </div>
+  `;
 
-  div.classList.add('comment');
-  pContent.classList.add('comment__content');
-  pAuthor.classList.add('comment__author');
-
-  pContent.textContent = content;
-  pAuthor.innerHTML = `Author:&nbsp;<span>${author}</span>`;
-  div.append(pContent, pAuthor);
-
-  return node.append(div);
+  // eslint-disable-next-line no-param-reassign
+  node.innerHTML += newComment;
 }
 
 async function addComment() {
-  const content = document.querySelector('.addComment__content');
-  const author = document.querySelector('.addComment__author');
-  const submit = document.querySelector('.addComment__submit');
-  const commentsWrapper = document.querySelector('.article__comments');
-  const formResponse = document.querySelector('.form__response');
-  const info = document.querySelector('.info');
+  const content = document.querySelector('#comment-content');
+  const author = document.querySelector('#comment-author');
+  const submit = document.querySelector('.comment-add__submit');
+  const commentsWrapper = document.querySelector('.comments-list');
+  const formMessage = document.querySelector('#comment-form-message');
 
   submit.addEventListener('click', async (e) => {
     e.preventDefault();
-    formResponse.textContent = '';
-
-    if (document.querySelector('p[temp-message=true]')) document.querySelector('p[temp-message=true]').remove();
-
-    // TODO: validate
-
     const urlParts = window.location.href.split('/');
     const newsId = urlParts[urlParts.length - 1];
 
@@ -50,15 +39,17 @@ async function addComment() {
     });
 
     if (response.errors.length) {
-      createMessage(response.errors, formResponse);
+      createMessage(response.errors, formMessage);
+      formMessage.classList.add('info--error');
     } else {
-      createMessage(response.message, formResponse);
+      formMessage.classList.remove('info--error');
+      createMessage(response.message, formMessage);
       createComment(content.value, author.value, commentsWrapper);
       content.value = '';
       if (!author.hasAttribute('disabled')) author.value = '';
-      info && info.classList.add('hide');
+      document.querySelector('#comment-message').textContent = '';
       setTimeout(() => {
-        formResponse.textContent = '';
+        formMessage.textContent = '';
       }, 2000);
     }
   });

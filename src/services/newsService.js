@@ -95,12 +95,12 @@ class NewsService extends TemplateService {
     if (typeof content !== 'string') {
       errors.push('No news content.');
     } else if (content.length === 0) errors.push('Content length can not be empty.');
-    else if (content.length > 500) errors.push('Content length can not be longer than 250.');
+    else if (content.length > 500) errors.push('Content length can not be longer than 500.');
 
     if (typeof description !== 'string') {
       errors.push('No news description.');
     } else if (description.length === 0) errors.push('Description length can not be empty.');
-    else if (description.length > 200) errors.push('Description length can not be longer than 250.');
+    else if (description.length > 200) errors.push('Description length can not be longer than 200.');
 
     if (typeof author !== 'string') {
       errors.push('No news author.');

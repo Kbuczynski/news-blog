@@ -1,38 +1,18 @@
-$shadowColor: rgba(0, 0, 0, 0.219);
+// helpers
+@import "helpers";
 
-@mixin customShadow($top: false) {
-    @if $top {
-        box-shadow: 0px 0px 1px 1px $shadowColor;
-    } @else {
-        box-shadow: 1px 1px 1px 1px $shadowColor;
-    }
-
-    transition: box-shadow .1s ease;
-}
-
-@mixin center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hide {
-    display: none;
-}
-
-// atoms 
-@import 'atoms/button/button', 
-        'atoms/comment/comment', 
-        'atoms/input/input', 
-        'atoms/message/message';
+// atoms
+@import "atoms/button/button",
+  "atoms/comment/comment",
+  "atoms/input/input",
+  "atoms/message/message";
 
 // molecules
-@import 'molecules/addComment/addComment',
-        'molecules/articleContent/articleContent', 
-        'molecules/articleThumbnail/articleThumbnail',
-        'molecules/header/header',
-        'molecules/search/search';
+@import "molecules/addComment/addComment",
+  "molecules/articleContent/articleContent",
+  "molecules/articleThumbnail/articleThumbnail",
+  "molecules/search/search";
 
 // organisms
-@import 'organisms/header/header',
-        'organisms/footer/footer';
+@import "organisms/footer/footer",
+  "organisms/header/header";

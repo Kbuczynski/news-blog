@@ -2,7 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @include customShadow;
+
+  @include custom-shadow;
+
   padding: 1rem 3rem;
 
   @media screen and (max-width: 700px) {

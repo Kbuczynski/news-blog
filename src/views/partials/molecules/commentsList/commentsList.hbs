@@ -1,0 +1,9 @@
+<section class="comments-list">
+    {{#if comments.data}}
+      {{#each comments.data}}
+        {{> comment comment=this}}
+      {{/each}}
+    {{else}}
+      {{> message message=comments.message id="comment-message" }}
+    {{/if}}
+</section>

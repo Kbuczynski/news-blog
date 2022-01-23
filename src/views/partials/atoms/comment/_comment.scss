@@ -1,19 +1,20 @@
 .comment {
-    @include customShadow();
-    width: 100%;
-    margin: .5rem 0;
-    border-radius: 10px;
-    padding: 0.7rem 1rem;
+  @include custom-shadow;
 
-    &__content {
-        margin: 1rem 0;
+  width: 100%;
+  margin: 0.5rem 0;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+
+  &__content {
+    margin: 1rem 0;
+  }
+
+  &__author {
+    margin: 1rem 0;
+
+    span {
+      font-weight: bold;
     }
-
-    &__author {
-        margin: 1rem 0;
-
-        span {
-            font-weight: bold;
-        }
-    }
+  }
 }
