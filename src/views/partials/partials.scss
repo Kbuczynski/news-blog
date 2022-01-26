@@ -8,11 +8,12 @@
   "atoms/message/message";
 
 // molecules
-@import "molecules/addComment/addComment",
+@import "molecules/commentAdd/commentAdd",
   "molecules/articleContent/articleContent",
   "molecules/articleThumbnail/articleThumbnail",
   "molecules/search/search";
 
 // organisms
-@import "organisms/footer/footer",
+@import "organisms/commentForm/commentForm",
+  "organisms/footer/footer",
   "organisms/header/header";

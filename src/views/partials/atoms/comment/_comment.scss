@@ -1,6 +1,7 @@
 .comment {
   @include custom-shadow;
 
+  position: relative;
   width: 100%;
   margin: 0.5rem 0;
   border-radius: 10px;
@@ -16,5 +17,15 @@
     span {
       font-weight: bold;
     }
+  }
+
+  &__delete {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+    cursor: pointer;
   }
 }

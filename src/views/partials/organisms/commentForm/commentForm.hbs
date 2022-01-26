@@ -1,4 +1,8 @@
 <section class="comment-form">
-    {{> commentAdd}}
-    {{> message id="comment-form-message"}}
+    {{#if login}}
+        {{> commentAdd}}
+        {{> message id="comment-form-message"}}
+    {{else}}
+        {{> message message="You need login first to comment news."}}
+    {{/if}}
 </section>

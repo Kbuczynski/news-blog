@@ -26,11 +26,9 @@
   &__more {
     display: flex;
     justify-content: flex-start;
-  }
 
-  .more {
-    &__read {
-      color: #000;
+    .more__read {
+      text-decoration: underline;
     }
   }
 }

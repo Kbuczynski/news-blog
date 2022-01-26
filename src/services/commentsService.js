@@ -41,8 +41,8 @@ class CommentsService extends TemplateService {
     let data = [];
 
     if (!errors.length) {
-      data = this._comments.filter((c) => c.id !== id);
-      this._comments = this._comments.filter((c) => c !== data[0]);
+      data = this._comments.filter((c) => c.id === id);
+      this._comments = this._comments.filter((c) => c.id !== id);
       message = 'Comment was removed correctly';
     }
 
