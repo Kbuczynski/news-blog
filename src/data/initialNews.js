@@ -2,31 +2,20 @@
 
 const { generateId } = require('../helpers/generateId');
 
-const news1 = {
-  id: generateId(),
-  title: 'The first news',
-  header: 'header 123',
-  content: 'very long content teested!!!!!!',
-  description:
-    'The "Unleashed" virtual showcase will likely focus on new MacBooks. he "Unleashed" virtual showcase will likely focus on new MacBooks. he "Unleashed" virtual showcase will likely focus on new MacBooks.',
-  author: 'Jan Kowalski',
-};
+const arr = new Array(20);
 
-const news2 = {
-  ...news1,
-  title: 'second',
-  id: generateId(),
-};
+// eslint-disable-next-line no-plusplus
+for (let i = 0; i < arr.length; i++) {
+  arr[i] = {
+    id: generateId(),
+    title: `The ${i + 1} news lorem ipsum`,
+    header: 'The longest header lorem ipsum lorem ipsum lorem i',
+    content: 'The longest content lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ',
+    description: 'The longest description lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lo',
+    author: 'Johnnnnnnnnnnnnnnnnnnnnn Doeeeeeeeeeeeeeeeeeeeeeee',
+  };
+}
 
-const news3 = {
-  id: generateId(),
-  title: 'The longest title lo',
-  header: 'The longest header lorem ipsum lorem ipsum lorem i',
-  content: 'The longest content lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ',
-  description: 'The longest description lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lo',
-  author: 'Johnnnnnnnnnnnnnnnnnnnnn Doeeeeeeeeeeeeeeeeeeeeeee',
-};
-
-const initialNews = [news1, news2, news3];
+const initialNews = arr;
 
 exports.initialNews = initialNews;
