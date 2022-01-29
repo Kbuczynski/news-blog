@@ -4,14 +4,14 @@
         {{> search}}
     </div>
     {{#if login}}
-        <div>
-            {{> button class="header__addNews" text="Add news"}}
-            {{> button class="header__logout" text="Logout"}}
+        <div class="header__menu">
+            {{> button class="menu__profile" text="Profile"}}
+            {{> button class="menu__logout" text="Logout"}}
         </div>
     {{else}}
-        <div>
-            {{> button class="header__login" text="Login"}}
-            {{> button class="header__register" text="Register"}}
+        <div class="header__menu">
+            {{> button class="menu__login" text="Login"}}
+            {{> button class="menu__register" text="Register"}}
         </div>
     {{/if}}
 </header>

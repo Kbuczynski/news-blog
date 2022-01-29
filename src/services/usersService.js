@@ -17,14 +17,14 @@ class NewsService extends TemplateService {
     let message = '';
     const errors = this._validate(user);
     errors.push(...this._isExist(user));
-
-    const data = {
-      id: this.setId(),
-      ...user,
-    };
+    const data = [];
 
     if (!errors.length) {
-      this._users.push(data);
+      data.push({
+        id: this.setId(),
+        ...user,
+      });
+      this._users.push(data[0]);
       message = 'User was added correclty.';
     }
 

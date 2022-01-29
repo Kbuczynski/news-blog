@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-class CommentService {
+class Comments {
   constructor(base) {
     this._base = base;
 
@@ -97,4 +97,4 @@ class CommentService {
   }
 }
 
-export default CommentService;
+export default Comments;

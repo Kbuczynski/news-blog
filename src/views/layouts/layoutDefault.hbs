@@ -16,9 +16,8 @@
     <link rel="stylesheet" type="text/css" href="./public/styles/pages/pages.css" />
 
     <script defer type="module" src="./public/js/index.js"></script>
-    <script defer type="module" src="./public/js/search.js"></script>
-    <script defer type="module" src="./public/js/login.js"></script>
-    {{#if comments}}<script defer type="module" src="./public/js/comments.js"></script>{{/if}}
+    <script defer type="module" src="./public/js/header.js"></script>
+    {{#if isArticleDetails}}<script defer type="module" src="./public/js/articleDetails.js"></script>{{/if}}
   </head>
   <body>
     {{> header}}

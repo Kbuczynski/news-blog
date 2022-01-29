@@ -3,8 +3,8 @@
 async function homeController(req, res) {
   const newsList = await api.get('news');
   const searchResults = req.query.search;
-  const user = req.headers.cookie
-    ? (await api.get('users')).data.filter((u) => u.id === req.headers.cookie.split('=')[1]) : [];
+  const loginCookie = req.headers.cookie.split(';').find((c) => c.includes('login'));
+  const user = loginCookie ? (await api.get('users')).data.filter((u) => u.id === loginCookie.split('=')[1]) : [];
 
   if (searchResults) {
     newsList.data = newsList.data.map((n) => {
