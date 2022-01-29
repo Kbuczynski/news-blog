@@ -1,0 +1,7 @@
+<section class="error-page">
+    {{#if pageNotFound}}
+        {{> message message="Error 404: Page Not Found"}}
+    {{else}}
+        {{> message message="Error 400: Access denied"}}
+    {{/if}}
+</section>

@@ -11,6 +11,7 @@ const commentsRouter = require('./routes/api/commentsRouter');
 const usersRouter = require('./routes/api/usersRouter');
 const homeRouter = require('./routes/homeRouter');
 const articleRouter = require('./routes/articleRouter');
+const errorRouter = require('./routes/errorRouter');
 
 const API = require('./helpers/API');
 const NewsCommentsFacade = require('./facades/newsCommentsFacade');
@@ -49,6 +50,7 @@ app.use('/api/users', usersRouter);
 
 app.use('/', homeRouter);
 app.use('/article', articleRouter);
+app.use(errorRouter);
 
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`App is running on http://127.0.0.1:${PORT}`));
