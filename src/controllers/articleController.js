@@ -2,8 +2,10 @@
 
 async function articleController(req, res) {
   const news = await api.get(`news/${req.params.id}`);
-  const loginCookie = req.headers.cookie.split(';').find((c) => c.includes('login'));
+
+  const loginCookie = req.headers.cookie?.split(';').find((c) => c.includes('login'));
   const user = loginCookie ? (await api.get('users')).data.filter((u) => u.id === loginCookie.split('=')[1]) : [];
+
   const comments = await api.get(`comments/${req.params.id}`);
   const commentsData = comments.data.map((c) => (c.author === user[0]?.login ? { ...c, isYourComment: true } : c));
 

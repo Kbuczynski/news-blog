@@ -181,6 +181,15 @@ describe('newsService:', () => {
       const expected = response({ errors: ['Additional property was added.'] });
       expect(newsService.editNews(newNews)).toEqual(expected);
     });
+
+    it('should return array with proper error message if id was missed', () => {
+      const newNews = {
+        title: 'New title',
+      };
+
+      const expected = response({ errors: ['News with given id does not exist.'] });
+      expect(newsService.editNews(newNews)).toEqual(expected);
+    });
   });
 
   describe('removeNews', () => {

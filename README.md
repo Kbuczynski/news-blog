@@ -28,7 +28,7 @@ npm i && npm run dev
 | getAllNews | GET | /api/news/ | -
 | getSingleNews | GET | /api/news/:id | -
 | addNews | POST | /api/news/add | title, header, content, description, author
-| editNews | PUT | /api/news/edit | title, header, content, description, author
+| editNews | PUT | /api/news/edit | id, title, header, content, description, author
 | removeNews | DELETE | /api/news/remove/:id | -
 
 ### Comments
