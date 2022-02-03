@@ -1,0 +1,9 @@
+<div class="articles-list">
+    {{#if newsList.data}}
+        {{#each newsList.data}}
+            {{> articleThumbnail article=this}}
+        {{/each}}
+    {{else}}
+        {{> message message=newsList.message}}
+    {{/if}}
+</div>

@@ -1,7 +1,8 @@
 .error-page {
-  min-height: 88.5vh;
+  min-height: $wrapper-height;
   font-size: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }

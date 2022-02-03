@@ -1,5 +1,5 @@
 // helpers
-@import "helpers";
+@import "../helpers";
 
 // atoms
 @import "atoms/button/button",
@@ -11,9 +11,11 @@
 @import "molecules/commentAdd/commentAdd",
   "molecules/articleContent/articleContent",
   "molecules/articleThumbnail/articleThumbnail",
-  "molecules/search/search";
+  "molecules/search/search",
+  "molecules/stats/stats";
 
 // organisms
-@import "organisms/commentForm/commentForm",
+@import "organisms/articlesList/articlesList",
+  "organisms/commentForm/commentForm",
   "organisms/footer/footer",
   "organisms/header/header";

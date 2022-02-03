@@ -6,15 +6,16 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 
 const dirHelper = require('./helpers/dirHelper');
+const API = require('./helpers/API');
+const NewsCommentsFacade = require('./facades/newsCommentsFacade');
+
 const newsRouter = require('./routes/api/newsRouter');
 const commentsRouter = require('./routes/api/commentsRouter');
 const usersRouter = require('./routes/api/usersRouter');
 const homeRouter = require('./routes/homeRouter');
 const articleRouter = require('./routes/articleRouter');
+const profileRouter = require('./routes/profileRouter');
 const errorRouter = require('./routes/errorRouter');
-
-const API = require('./helpers/API');
-const NewsCommentsFacade = require('./facades/newsCommentsFacade');
 
 const PORT = process.env.PORT || 3000;
 const PATH_LAYOUTS = `${__dirname}/views/layouts`;
@@ -50,6 +51,7 @@ app.use('/api/users', usersRouter);
 
 app.use('/', homeRouter);
 app.use('/article', articleRouter);
+app.use('/profile', profileRouter);
 app.use(errorRouter);
 
 // eslint-disable-next-line no-console

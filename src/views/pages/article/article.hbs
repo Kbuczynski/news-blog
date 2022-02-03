@@ -2,10 +2,12 @@
   <section class="article__wrapper">
       {{> articleContent news=news}}    
   </section>
-{{#if pageTitle}}
-  <section class="article__comments">
-    {{> commentsList comments=comments}}
-    {{> commentForm}}
-  </section>
-{{/if}}
+  {{#unless news.shouldEdit}}
+    {{#if pageTitle}}
+      <section class="article__comments">
+        {{> commentsList comments=comments}}
+        {{> commentForm}}
+      </section>
+    {{/if}}
+  {{/unless}}
 </section>

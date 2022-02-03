@@ -1,4 +1,8 @@
+// helpers
+@import "../helpers";
+
 // pages
 @import "article/article",
   "error/error",
-  "home/home";
+  "home/home",
+  "profile/profile";

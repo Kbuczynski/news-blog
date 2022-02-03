@@ -1,9 +1,43 @@
 {{#if news.data}}
-  <article class="articel-content">
-    <h1 class="articel-content__title">{{news.data.title}}</h1>
-    <p class="articel-content__header">{{news.data.description}}</p>
-    <p class="articel-content__content">{{news.data.content}}</p>
-    <p class="articel-content__author">Author:&nbsp;<span>{{news.data.author}}</span></p>
+  <article class="article-content">
+    {{#if news.shouldEdit}}<label>Title:</label>{{/if}}
+    <h1 class="article-content__title" {{#if news.shouldEdit}}contenteditable{{/if}}>{{news.data.title}}</h1>
+
+    {{#if news.shouldEdit}}<label>Header:</label>{{/if}}
+    <p class="article-content__header" {{#if news.shouldEdit}}contenteditable{{/if}}>{{news.data.header}}</p>
+
+    {{#if news.shouldEdit}}<label>Content:</label>{{/if}}
+    <p class="article-content__content" {{#if news.shouldEdit}}contenteditable{{/if}}>{{news.data.content}}</p>
+
+    {{#if news.shouldEdit}}<label>Description:</label>
+      <p class="article-content__description" contenteditable>{{news.data.description}}</p>
+    {{/if}}
+
+    {{#unless news.shouldEdit}}<p class="article-content__author">Author:&nbsp;<span>{{news.data.author}}</span></p>{{/unless}}
+
+    {{#if news.shouldEdit}}
+      {{> button text="Update news" class="article-content__update"}}
+      {{> message id="article-message"}}
+    {{/if}}
+  </article>
+{{else if news.shouldCreate}}
+  <article class="article-content">
+    <label>Title:</label>
+    <h1 class="article-content__title" contenteditable></h1>
+
+    <label>Header:</label>
+    <p class="article-content__header" contenteditable></p>
+
+    <label>Content:</label>
+    <p class="article-content__content" contenteditable></p>
+
+    <label>Description:</label>
+    <p class="article-content__description" contenteditable></p>
+
+    <p class="article-content__author hide">{{user.login}}</span></p>
+
+    {{> button text="Create news" class="article-content__create"}}
+    {{> message id="article-message"}}
   </article>
 {{else}}
   {{> message message=news.errors error="true"}}

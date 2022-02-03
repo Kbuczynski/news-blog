@@ -1,0 +1,16 @@
+<section class="profile">
+    <div class="profile__settings">
+        <h2>{{user.login}}`s panel</h3>
+
+        <div class="settings__stats">
+            {{>stats stats=stats}}
+        </div>
+
+        <div class="settings__add-news">
+            {{>button type="submit" text="Add news"}}
+        </div>
+    </div>
+    <div class="profile__articles">
+        {{> articlesList newsList=newsList}}
+    </div>
+</section>

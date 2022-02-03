@@ -9,6 +9,9 @@ async function articleController(req, res) {
   const comments = await api.get(`comments/${req.params.id}`);
   const commentsData = comments.data.map((c) => (c.author === user[0]?.login ? { ...c, isYourComment: true } : c));
 
+  const shouldEdit = !!req.query.edit && user[0]?.login.toLowerCase() === news.data[0]?.author.toLowerCase();
+  const shouldCreate = !!req.query.create && user.length;
+
   res.render('pages/article/article', {
     layout: 'layoutDefault',
     pageTitle: news.data[0]?.title,
@@ -16,6 +19,8 @@ async function articleController(req, res) {
       data: news.data[0],
       message: news.message,
       errors: news.errors.join(' '),
+      shouldEdit,
+      shouldCreate,
     },
     comments: {
       ...comments,

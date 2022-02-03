@@ -1,4 +1,8 @@
 $shadow-color: rgba(0, 0, 0, 0.219);
+$breakpoint-md: 850px;
+
+// 100vh - header height - footer height
+$wrapper-height: calc(100vh - (41.375px + 1rem * 2) - (12px + 0.75rem * 2));
 
 @mixin custom-shadow($top: false) {
   @if $top {

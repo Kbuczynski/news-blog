@@ -1,6 +1,6 @@
 .article {
-  min-height: 88.4vh;
-  padding: 5%;
+  min-height: $wrapper-height;
+  padding: 2%;
 
   & > * {
     margin: 2rem 0;

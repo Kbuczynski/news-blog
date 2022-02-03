@@ -21,7 +21,10 @@ async function homeController(req, res) {
   res.render('pages/home/home', {
     layout: 'layoutDefault',
     pageTitle: 'Home',
-    newsList,
+    newsList: {
+      ...newsList,
+      data: newsList.data.reverse(),
+    },
     search: searchResults || '',
     login: !!user.length,
     user: user[0] || [],

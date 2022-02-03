@@ -2,12 +2,12 @@
   @include custom-shadow;
 
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
   flex-direction: column;
-  padding: 0.7rem 1rem;
-  max-width: 20rem;
+  padding: 0.7rem 1rem 4rem;
+  width: 20rem;
+  height: 20rem;
   border-radius: 10px;
+  position: relative;
 
   &--hide {
     display: none;
@@ -23,12 +23,17 @@
     }
   }
 
-  &__more {
+  &__links {
     display: flex;
     justify-content: flex-start;
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    cursor: pointer;
 
-    .more__read {
+    .links__item {
       text-decoration: underline;
+      margin-left: 0.5rem;
     }
   }
 }

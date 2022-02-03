@@ -21,7 +21,7 @@ function generateInitialComments(newsId) {
     newsId,
     // parent_id: null,
     content: 'lorem ipsum comment tested',
-    author: 'Jan Kowalski',
+    author: 'anna',
   };
 
   const comment2 = {
@@ -29,7 +29,7 @@ function generateInitialComments(newsId) {
     newsId,
     // parent_id: id1,
     content: 'lorem ipsum comment tested 2',
-    author: 'John Doe',
+    author: 'admin',
   };
 
   return [comment1, comment2];

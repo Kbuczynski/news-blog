@@ -4,7 +4,11 @@
     <p>{{article.description}}</p>
   </div>
 
-  <div class="article-thumbnail__more">
-    <a href="/article/{{article.id}}" class="more__read">Read More</a>
+  <div class="article-thumbnail__links">
+    <a href="/article/{{article.id}}" class="links__item">Read More</a>
+    {{#if article.edit}}
+      <a href="/article/{{article.id}}?edit=true" class="links__item">Edit</a>
+      <a class="links__item links__item--delete" article-id="{{article.id}}">Delete</a>
+    {{/if}}
   </div>
 </article>
