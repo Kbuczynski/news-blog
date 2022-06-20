@@ -11,4 +11,25 @@ services:
     ports:
       - "3000:3000"
     env_file: .env
-    container_name: news-blog-web
+    container_name: webapp
+  database:
+    container_name: postgres
+    image: postgres
+    env_file: .env
+    ports:
+      - "5432:5432"
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    env_file: .env
+    ports:
+      - "5050:80"
+    logging:
+      driver: none
+  migrations:
+      container_name: migrations
+      build:
+        context: ./migrations
+      env_file: ./migrations/.env
+      depends_on:
+        - database

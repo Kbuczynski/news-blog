@@ -6,7 +6,7 @@
   "author": "kbuczynski",
   "license": "ISC",
   "engines": {
-    "node": "14.17.5"
+    "node": "16.14.2"
   },
   "scripts": {
     "start": "node src/index.js",
@@ -16,8 +16,8 @@
     "watch:server": "nodemon src/index.js",
     "watch:scss": "node-sass --output-style compressed -w src/views -o src/public/styles",
     "lint": "npm run lint:js && npm run lint:scss",
-    "lint:js": "npx eslint src",
-    "lint:js:fix": "npx eslint src --fix",
+    "lint:js": "npx eslint .",
+    "lint:js:fix": "npx eslint . --fix",
     "lint:scss": "npx stylelint '**/*.scss'",
     "lint:scss:fix": "npx stylelint '**/*.scss' --fix",
     "env-template": "npx env-template",

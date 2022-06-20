@@ -1,0 +1,6 @@
+
+{
+  "migration-filename-format": "utc",
+  "template-file-name": "template.js",
+  "migrations-dir": "src"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "migrations",
+  "version": "1.0.0",
+  "scripts": {
+    "migrate": "node-pg-migrate --config-file=config.json",
+    "migrate:create": "npm run migrate create",
+    "migrate:up:first": "npm run migrate up 20220620191508274_categories",
+    "migrate:up": "npm run migrate up -- --no-check-order",
+    "migrate:down": "npm run migrate down"
+  },
+  "dependencies": {
+    "node-pg-migrate": "6.2.1",
+    "pg": "8.7.3",
+    "uuid": "8.3.2"
+  }
+}
