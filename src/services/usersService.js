@@ -1,61 +1,50 @@
 const TemplateService = require('../helpers/templateService');
+const UsersRepository = require('../repositories/usersRepository');
 
 class NewsService extends TemplateService {
   constructor(users) {
     super();
     this._users = users;
+    this._repository = new UsersRepository();
   }
 
-  getAllUsers() {
+  async getAllUsers() {
     let message = '';
-    const data = this._users;
+    const data = await this._repository.getAllUsers();
     if (!data.length) message = 'There are no users.';
     return this.createResponse({ data, message });
   }
 
-  register(user) {
+  async register(user) {
     let message = '';
     const errors = this._validate(user);
-    errors.push(...this._isExist(user));
-    const data = [];
+    let data = [];
 
     if (!errors.length) {
-      data.push({
-        id: this.setId(),
-        ...user,
-      });
-      this._users.push(data[0]);
-      message = 'User was added correclty.';
+      try {
+        data = await this._repository.addUser(user);
+        message = 'User was added correctly.';
+      } catch (e) {
+        errors.push(e.message);
+      }
     }
 
     return this.createResponse({ data, message, errors });
   }
 
-  login(user) {
+  async login(user) {
     let message = '';
-    const errors = this._isCorrectLogin(user);
-    const data = [];
+    const errors = [];
+    let data = [];
 
-    if (!errors.length) {
-      data.push(this._getUserByLogin(user)[0]);
-      message = 'Login successfull.';
+    try {
+      data = await this._repository.getUser(user);
+      message = 'Login successful.';
+    } catch (e) {
+      errors.push(e.message);
     }
 
-    return this.createResponse({ data, message, errors });
-  }
-
-  _getUserByLogin(user) {
-    return this._users.filter((u) => u.login.toLowerCase() === user.login.toLowerCase());
-  }
-
-  _isCorrectLogin(user) {
-    const errors = [];
-    const pendingUser = this._getUserByLogin(user);
-
-    if (!pendingUser.length) errors.push('User with given login does not exist.');
-    else user.password !== pendingUser[0].password && errors.push('Wrong password.');
-
-    return errors;
+    return this.createResponse({ data, message });
   }
 
   _validate(user) {
@@ -70,15 +59,6 @@ class NewsService extends TemplateService {
     if (typeof password !== 'string') {
       errors.push('No news password.');
     } else if (password.length < 6) errors.push('Password length can not be less than 6.');
-
-    return errors;
-  }
-
-  _isExist(user) {
-    const errors = [];
-    const loginUsed = this._getUserByLogin(user).length;
-
-    loginUsed && errors.push('User with given login already exist.');
 
     return errors;
   }

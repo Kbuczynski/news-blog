@@ -5,9 +5,9 @@ const { initialUsers } = require('../../data/initialUsers');
 
 const usersService = new UsersService(initialUsers);
 
-exports.getAllUsers = (_, res) => {
+exports.getAllUsers = async (_, res) => {
   try {
-    const response = usersService.getAllUsers();
+    const response = await usersService.getAllUsers();
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);
@@ -15,9 +15,9 @@ exports.getAllUsers = (_, res) => {
   }
 };
 
-exports.register = (req, res) => {
+exports.register = async (req, res) => {
   try {
-    const response = usersService.register(req.body);
+    const response = await usersService.register(req.body);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);
@@ -25,9 +25,9 @@ exports.register = (req, res) => {
   }
 };
 
-exports.login = (req, res) => {
+exports.login = async (req, res) => {
   try {
-    const response = usersService.login(req.body);
+    const response = await usersService.login(req.body);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);
