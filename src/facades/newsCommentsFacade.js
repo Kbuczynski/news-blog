@@ -1,3 +1,4 @@
+/* eslint-disable no-return-await */
 const NewsService = require('../services/newsService');
 const CommentsService = require('../services/commentsService');
 
@@ -14,8 +15,8 @@ class NewsCommentsFacade {
 
   isNewsExist = (id) => this._newsService.isExist(id);
 
-  getAllNews() {
-    return this._newsService.getAllNews();
+  async getAllNews() {
+    return await this._newsService.getAllNews();
   }
 
   getSingleNews(id) {

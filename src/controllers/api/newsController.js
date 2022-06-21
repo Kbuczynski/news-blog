@@ -1,8 +1,11 @@
 /* eslint-disable no-console, no-undef */
+const NewsService = require('../../services/newsService');
 
-exports.getAllNews = (_, res) => {
+const newsService = new NewsService();
+
+exports.getAllNews = async (_, res) => {
   try {
-    const response = newsCommentsFacade.getAllNews();
+    const response = await newsService.getAllNews();
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);
@@ -10,9 +13,9 @@ exports.getAllNews = (_, res) => {
   }
 };
 
-exports.getSingleNews = (req, res) => {
+exports.getSingleNews = async (req, res) => {
   try {
-    const response = newsCommentsFacade.getSingleNews(req.params.id);
+    const response = await newsService.getSingleNews(req.params.id);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);
@@ -20,9 +23,9 @@ exports.getSingleNews = (req, res) => {
   }
 };
 
-exports.addNews = (req, res) => {
+exports.addNews = async (req, res) => {
   try {
-    const response = newsCommentsFacade.addNews(req.body);
+    const response = await newsService.addNews(req.body);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);
@@ -30,9 +33,9 @@ exports.addNews = (req, res) => {
   }
 };
 
-exports.editNews = (req, res) => {
+exports.editNews = async (req, res) => {
   try {
-    const response = newsCommentsFacade.editNews(req.body);
+    const response = await newsService.editNews(req.body);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);
@@ -40,9 +43,9 @@ exports.editNews = (req, res) => {
   }
 };
 
-exports.removeNews = (req, res) => {
+exports.removeNews = async (req, res) => {
   try {
-    const response = newsCommentsFacade.removeNews(req.params.id);
+    const response = await newsService.removeNews(req.params.id);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);

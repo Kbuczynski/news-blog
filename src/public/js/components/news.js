@@ -41,9 +41,10 @@ class News {
     const header = this._base.querySelector('.article-content__header').textContent;
     const content = this._base.querySelector('.article-content__content').textContent;
     const description = this._base.querySelector('.article-content__description').textContent;
+    const category = +this._base.querySelector('#category').value;
 
     const response = await api.put('news/edit', {
-      id: this.newsId, title, header, content, description,
+      id: this.newsId, title, header, content, description, category,
     });
 
     this._responseHandler(response);
@@ -56,9 +57,10 @@ class News {
     const content = this._base.querySelector('.article-content__content').textContent;
     const description = this._base.querySelector('.article-content__description').textContent;
     const author = this._base.querySelector('.article-content__author').textContent;
+    const category = +this._base.querySelector('#category').value;
 
     const response = await api.post('news/add', {
-      title, header, content, description, author,
+      title, header, content, description, author, category,
     });
 
     this._responseHandler(response);
@@ -66,6 +68,7 @@ class News {
     if (!response.errors.length) {
       // eslint-disable-next-line no-param-reassign, no-return-assign
       this._base.querySelectorAll('*[contenteditable]').forEach((el) => el.textContent = '');
+      this._base.querySelector('#category').value = 1;
     }
   }
 }

@@ -3,4 +3,18 @@
   <ul class="stats__list">
     <li class="stats__item">News created: <span>{{stats.countNews}}</span></li>
   </ul>
+  <h3 class="stats__title">Filters</h3>
+  <ul class="stats__list">
+    <li class="stats__item"><a href="/profile?filter=title&type=desc">From newest (default)</a></span></li>
+    <li class="stats__item"><a href="/profile?filter=title&type=asc">From oldest</a></span></li>
+    <li class="stats__item">
+      <select id="category">
+          <option>By category</option>
+        {{#each categories}}
+          {{this.default}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </li>
+  </ul>
 </div>

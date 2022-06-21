@@ -1,76 +1,82 @@
 const TemplateService = require('../helpers/templateService');
+const NewsRepository = require('../repositories/newsRepository');
 
 class NewsService extends TemplateService {
   constructor(news) {
     super();
+    this._repository = new NewsRepository();
     this._news = news || [];
-    this._newsProperties = ['id', 'title', 'header', 'content', 'description', 'author'];
+    this._newsProperties = ['id', 'title', 'header', 'content', 'description', 'author', 'category', 'created_at'];
   }
 
-  getAllNews() {
+  async getAllNews() {
     let message = '';
-    const data = this._news;
+    const data = await this._repository.getAllNews();
     if (!data.length) message = 'There are no news.';
     return this.createResponse({ data, message });
   }
 
-  getSingleNews(id) {
-    const errors = this.isExist(id);
-    const data = this._news.filter((n) => n.id === id);
+  async getSingleNews(id) {
+    const errors = [];
+    let data = await this._repository.getSingleNews(id);
+
+    try {
+      data = await this._repository.getSingleNews(id);
+    } catch (e) {
+      errors.push(e.message);
+    }
+
     return this.createResponse({ data, errors });
   }
 
-  addNews(news) {
+  async addNews(news) {
     let message = '';
     const errors = this._validate(news);
     let data = [];
 
     if (!errors.length) {
-      data = {
-        id: this.setId(),
-        ...news,
-      };
-      this._news.push(data);
-      message = 'News was added correclty.';
+      try {
+        data = await this._repository.addNews(news);
+        message = 'News was added correctly.';
+      } catch (e) {
+        errors.push(e.message);
+      }
     }
 
     return this.createResponse({ data, message, errors });
   }
 
-  editNews(news) {
+  async editNews(news) {
     let message = '';
-    const errors = this.isExist(news.id);
-    const oldNews = this._news.filter((n) => n.id === news.id);
+    const errors = this._validate(news);
     const data = [];
-    const updatedNews = {
-      ...oldNews[0],
-      ...news,
-    };
 
-    !errors.length
-      && this._validate(updatedNews).length
-      && errors.push(this._validate(updatedNews));
-
-    !this.isProperData(this._newsProperties, updatedNews) && errors.push('Additional property was added.');
+    !this.isProperData(this._newsProperties, news) && errors.push('Additional property was added.');
 
     if (!errors.length) {
-      this._news = this._news.map((n) => (n.id === news.id ? updatedNews : n));
-      data.push(updatedNews);
-      message = 'News was edited correclty.';
+      try {
+        data.push(await this._repository.editNews(news));
+        message = 'News was edited correctly.';
+      } catch (e) {
+        errors.push(e.message);
+      }
     }
 
     return this.createResponse({ data, message, errors });
   }
 
-  removeNews(id) {
+  async removeNews(id) {
     let message = '';
-    const errors = this.isExist(id);
+    const errors = [];
     let data = [];
 
     if (!errors.length) {
-      data = this._news.filter((n) => n.id === id);
-      this._news = this._news.filter((n) => n.id !== id);
-      message = 'News was removed correctly';
+      try {
+        data = await this._repository.removeNews(id);
+        message = 'News was removed correctly';
+      } catch (e) {
+        errors.push(e.message);
+      }
     }
 
     return this.createResponse({ data, message, errors });
@@ -78,7 +84,7 @@ class NewsService extends TemplateService {
 
   _validate(news = {}) {
     const {
-      title, header, content, description, author,
+      title, header, content, description,
     } = news;
     const errors = [];
 
@@ -101,11 +107,6 @@ class NewsService extends TemplateService {
       errors.push('No news description.');
     } else if (description.length === 0) errors.push('Description length can not be empty.');
     else if (description.length > 200) errors.push('Description length can not be longer than 200.');
-
-    if (typeof author !== 'string') {
-      errors.push('No news author.');
-    } else if (author.length === 0) errors.push('Author length can not be empty.');
-    else if (author.length > 50) errors.push('Author length can not be longer than 50.');
 
     return errors;
   }

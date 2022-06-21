@@ -11,9 +11,13 @@ async function homeController(req, res) {
   if (searchResults) {
     newsList.data = newsList.data.map((n) => {
       const newsTitle = n.title.toLowerCase();
+      const newsDescription = n.description.toLowerCase();
+      const newsCategory = n.category_name.toLowerCase();
       const searchTitle = searchResults.toLowerCase();
 
-      if (newsTitle.includes(searchTitle)) return n;
+      if (newsTitle.includes(searchTitle)
+        || newsDescription.includes(searchTitle)
+        || newsCategory.includes(searchTitle)) return n;
       return false;
     }).filter(Boolean);
   }
@@ -23,7 +27,7 @@ async function homeController(req, res) {
     pageTitle: 'Home',
     newsList: {
       ...newsList,
-      data: newsList.data.reverse(),
+      data: newsList.data,
     },
     search: searchResults || '',
     login: !!user.length,

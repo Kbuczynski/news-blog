@@ -13,8 +13,8 @@ class TemplateService {
     return generateId();
   }
 
-  isProperData(avaibleProperties, data) {
-    return !Object.keys(data).filter((key) => !avaibleProperties.includes(key)).length;
+  isProperData(availableProperties, data) {
+    return !Object.keys(data).filter((key) => !availableProperties.includes(key)).length;
   }
 }
 

@@ -9,11 +9,23 @@
     {{#if news.shouldEdit}}<label>Content:</label>{{/if}}
     <p class="article-content__content" {{#if news.shouldEdit}}contenteditable{{/if}}>{{news.data.content}}</p>
 
-    {{#if news.shouldEdit}}<label>Description:</label>
-      <p class="article-content__description" contenteditable>{{news.data.description}}</p>
+    {{#if news.shouldEdit}}<label>Description:</label>{{/if}}
+    <p class="article-content__description" {{#if news.shouldEdit}}contenteditable{{/if}}>{{news.data.description}}</p>
+
+    {{#if news.shouldEdit}}
+      <div class="article-content__category">
+        <label for="category">Choose a category:</label>
+        <select id="category">
+          {{#each categories}}
+            {{this.default}}
+            <option value="{{this.id}}" {{#if this.default}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
     {{/if}}
 
-    {{#unless news.shouldEdit}}<p class="article-content__author">Author:&nbsp;<span>{{news.data.author}}</span></p>{{/unless}}
+    {{#unless news.shouldEdit}}<p class="article-content__author">Author:&nbsp;<span>{{news.data.login}}</span></p>{{/unless}}
+    {{#unless news.shouldEdit}}<p class="article-content__author">Published:&nbsp;<span>{{news.data.created_at}}</span></p>{{/unless}}
 
     {{#if news.shouldEdit}}
       {{> button text="Update news" class="article-content__update"}}
@@ -34,7 +46,17 @@
     <label>Description:</label>
     <p class="article-content__description" contenteditable></p>
 
-    <p class="article-content__author hide">{{user.login}}</span></p>
+    <p class="article-content__author hide">{{user}}</p>
+
+    <div class="article-content__category">
+      <label for="category">Choose a category:</label>
+      <select id="category">
+        {{#each categories}}
+          {{this.default}}
+          <option value="{{this.id}}" {{#if this.default}}selected{{/if}}>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
 
     {{> button text="Create news" class="article-content__create"}}
     {{> message id="article-message"}}
