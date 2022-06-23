@@ -11,6 +11,7 @@ async function errorController(req, res) {
     pageTitle: 'Error',
     pageNotFound: !isAccessError,
     login: !!user.length,
+    back: '/',
   });
 }
 

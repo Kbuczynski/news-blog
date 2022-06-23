@@ -8,9 +8,31 @@ const addNewsButton = document.querySelector('.settings__add-news > button');
 // eslint-disable-next-line no-return-assign
 addNewsButton?.addEventListener('click', () => window.location.href = `${window.location.origin}/article/new?create=true`);
 
+function handleQueryPrams(param, value) {
+  const url = new URL(window.location.href);
+  const params = url.searchParams;
+  params.set(param, value);
+  url.search = params.toString();
+
+  return url.toString();
+}
+
+const modifiedFilter = document.querySelector('#modified');
+modifiedFilter?.addEventListener('input', (e) => {
+  e.preventDefault();
+  const { value } = e.target;
+  window.location.href = handleQueryPrams('modified', value);
+});
+
 const categoryFilter = document.querySelector('#category');
 categoryFilter?.addEventListener('input', (e) => {
   e.preventDefault();
   const { value } = e.target;
-  window.location.href = `${window.location.origin}/profile?filter=category&type=${value}`;
+  window.location.href = handleQueryPrams('category', value);
+});
+
+const resetFilters = document.querySelector('.reset-filters');
+resetFilters.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.location.href = '/profile';
 });

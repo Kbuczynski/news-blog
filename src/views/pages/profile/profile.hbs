@@ -4,11 +4,13 @@
 
         <div class="settings__stats">
             {{>stats stats=stats}}
+            {{>button type="submit" text="Reset filters" class="reset-filters"}}
         </div>
 
         <div class="settings__add-news">
             {{>button type="submit" text="Add news"}}
         </div>
+
     </div>
     <div class="profile__articles">
         {{> articlesList newsList=newsList}}

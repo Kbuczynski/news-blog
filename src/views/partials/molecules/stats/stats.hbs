@@ -5,14 +5,19 @@
   </ul>
   <h3 class="stats__title">Filters</h3>
   <ul class="stats__list">
-    <li class="stats__item"><a href="/profile?filter=title&type=desc">From newest (default)</a></span></li>
-    <li class="stats__item"><a href="/profile?filter=title&type=asc">From oldest</a></span></li>
     <li class="stats__item">
+      <label>By modified date</label>
+      <select id="modified">
+          <option value="DESC" {{#if this.modifiedDefault}}selected{{/if}}>newest</option>
+          <option value="ASC" {{#if this.modifiedDefault}}selected{{/if}}>oldest</option>
+      </select>
+    </li>
+    <li class="stats__item">
+      <label>By category</label>
       <select id="category">
-          <option>By category</option>
+          <option value="">reset</option>
         {{#each categories}}
-          {{this.default}}
-          <option value="{{this.id}}">{{this.name}}</option>
+          <option value="{{this.id}}" {{#if this.default}}selected{{/if}}>{{this.name}}</option>
         {{/each}}
       </select>
     </li>

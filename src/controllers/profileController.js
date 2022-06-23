@@ -7,12 +7,14 @@ async function profileController(req, res) {
   const newsRepository = new NewsRepository();
   const categoriesRepository = new CategoriesRepository();
 
-  const categories = await categoriesRepository.getAll();
+  const categories = (await categoriesRepository.getAll())
+    .map((category) => ({ ...category, default: +req.query.category === category.id }));
 
   const loginCookie = req.headers.cookie?.split(';').find((c) => c.includes('login'));
   const user = loginCookie ? (await api.get('users')).data.filter((u) => u.id === loginCookie.split('=')[1]) : [];
 
-  const newsData = (await newsRepository.getNewsByAuthor(loginCookie.split('=')[1])).map((news) => ({ ...news, edit: true }));
+  const newsData = (await newsRepository.getNewsByAuthor(loginCookie.split('=')[1], req.query.modified, req.query.category))
+    .map((news) => ({ ...news, edit: true }));
 
   if (!user.length) return res.redirect('/error?isAccessError=true');
 
@@ -21,7 +23,7 @@ async function profileController(req, res) {
     pageTitle: 'Profile',
     newsList: {
       data: newsData,
-      message: newsData.length && 'There are no news. Let\'s create new one!',
+      message: !newsData.length && 'There are no news. Let\'s create new one!',
     },
     stats: {
       countNews: newsData.length,
@@ -30,6 +32,7 @@ async function profileController(req, res) {
     user: user[0] || [],
     isProfile: true,
     categories,
+    modifiedDefault: req.query.modified === 'ASC',
   });
 }
 

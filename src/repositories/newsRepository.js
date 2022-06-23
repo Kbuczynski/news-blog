@@ -7,7 +7,7 @@ class NewsRepository {
     return (await database.query(`
       SELECT news.*, categories.name AS category_name FROM news
         JOIN categories ON news.category = categories.id
-        ORDER BY news.modified_at DESC
+        ORDER BY news.created_at DESC
     `)).rows;
   }
 
@@ -30,12 +30,13 @@ class NewsRepository {
     `));
   }
 
-  async getNewsByAuthor(id) {
+  async getNewsByAuthor(id, modified = 'DESC', category = '') {
     return (await database.query(`
       SELECT news.*, categories.name AS category_name FROM news
         JOIN categories ON news.category = categories.id
         WHERE news.author = '${id}'
-        ORDER BY news.modified_at DESC
+        ${category && `AND news.category = ${category}`}
+        ORDER BY news.modified_at ${modified}
     `)).rows;
   }
 
