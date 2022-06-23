@@ -1,25 +1,41 @@
 <div class="stats">
   <h3 class="stats__title">Statistics</h3>
   <ul class="stats__list">
-    <li class="stats__item">News created: <span>{{stats.countNews}}</span></li>
+      {{#if showComments}}
+        <li class="stats__item">Comments created: <span>{{stats.countComments}}</span></li>
+      {{else}}
+        <li class="stats__item">News created: <span>{{stats.countNews}}</span></li>
+      {{/if}}
   </ul>
   <h3 class="stats__title">Filters</h3>
-  <ul class="stats__list">
-    <li class="stats__item">
-      <label>By modified date</label>
-      <select id="modified">
-          <option value="DESC" {{#if this.modifiedDefault}}selected{{/if}}>newest</option>
-          <option value="ASC" {{#if this.modifiedDefault}}selected{{/if}}>oldest</option>
-      </select>
-    </li>
-    <li class="stats__item">
-      <label>By category</label>
-      <select id="category">
-          <option value="">reset</option>
-        {{#each categories}}
-          <option value="{{this.id}}" {{#if this.default}}selected{{/if}}>{{this.name}}</option>
-        {{/each}}
-      </select>
-    </li>
-  </ul>
+  {{#if showComments}}
+    <ul class="stats__list">
+      <li class="stats__item">
+        <label>By created date</label>
+        <select id="created">
+            <option value="DESC" {{#if this.createdDefault}}selected{{/if}}>newest</option>
+            <option value="ASC" {{#if this.createdDefault}}selected{{/if}}>oldest</option>
+        </select>
+      </li>
+    </ul>
+  {{else}}
+    <ul class="stats__list">
+      <li class="stats__item">
+        <label>By modified date</label>
+        <select id="modified">
+            <option value="DESC" {{#if this.modifiedDefault}}selected{{/if}}>newest</option>
+            <option value="ASC" {{#if this.modifiedDefault}}selected{{/if}}>oldest</option>
+        </select>
+      </li>
+      <li class="stats__item">
+        <label>By category</label>
+        <select id="category">
+            <option value="">-</option>
+          {{#each categories}}
+            <option value="{{this.id}}" {{#if this.default}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </li>
+    </ul>
+  {{/if}}
 </div>

@@ -101,7 +101,7 @@ class Comments {
       currentComment.remove();
       this._addEvents();
       const comments = await api.get(`comments/${this.newsId}`);
-      if (!comments.data.length) baseMessage.classList.remove('hide');
+      if (!comments.data.length) baseMessage?.classList.remove('hide');
     }
   }
 }

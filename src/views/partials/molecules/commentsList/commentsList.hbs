@@ -1,6 +1,6 @@
 <section class="comments-list">
     {{#if comments.data}}
-      {{> message message=comments.message id="comment-message" hide=true }}
+      {{#unless isProfile}} {{> message message=comments.message id="comment-message" hide=true }} {{/unless}}
       {{#each comments.data}}
         {{> comment comment=this}}
       {{/each}}

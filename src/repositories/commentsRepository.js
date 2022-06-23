@@ -11,6 +11,16 @@ class CommentsRepository {
     `)).rows;
   }
 
+  async getCommentsByAuthor(id, created = 'DESC') {
+    return (await database.query(`
+      SELECT comments.*, news.id as news_id FROM comments
+      JOIN news ON news.id = comments.news
+      JOIN users ON users.id = comments.author
+      WHERE comments.author = '${id}'
+      ORDER BY created_at ${created}
+    `)).rows;
+  }
+
   async addComment(comment) {
     return (await database.query(`
       INSERT INTO comments VALUES (

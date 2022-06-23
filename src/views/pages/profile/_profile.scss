@@ -39,6 +39,29 @@
       width: 100%;
       height: auto;
       overflow-y: auto;
+      align-items: center;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-around;
+
+    @media screen and (max-width: $breakpoint-md) {
+      flex-direction: column;
+    }
+  }
+
+  .profile__nav > * {
+    width: 100%;
+    padding: 1rem;
+
+    @include custom-shadow;
+
+    text-align: center;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }

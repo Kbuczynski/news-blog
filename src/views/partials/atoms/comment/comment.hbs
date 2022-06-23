@@ -1,6 +1,7 @@
 <div class="comment" comment-id="{{comment.id}}">
   <p class="comment__content">{{comment.content}}</p>
-  <p class="comment__author">Author:&nbsp;<span>{{comment.author}}</span></p>
+  {{#unless comment.isProfile}}<p class="comment__author">Author:&nbsp;<span>{{comment.author}}</span></p>{{/unless}}
   <p class="comment__author">Created at:&nbsp;<span>{{comment.created_at}}</span></p>
   {{#if comment.isYourComment}}<button class="comment__delete">Delete</button>{{/if}}
+  {{#if comment.isProfile}}<a href="/article/{{comment.news_id}}">Go to news</a>{{/if}}
 </div>

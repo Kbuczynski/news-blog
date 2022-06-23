@@ -13,6 +13,14 @@
 
     </div>
     <div class="profile__articles">
-        {{> articlesList newsList=newsList}}
+        <div class="profile__nav">
+            <a href="/profile?view=news">news</a>
+            <a href="/profile?view=comments">comments</a>
+        </div>
+        {{#if showComments}}
+            {{> commentsList comments=comments}}
+        {{else}}
+            {{> articlesList newsList=newsList}}
+        {{/if}}
     </div>
 </section>
