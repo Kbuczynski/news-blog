@@ -1,49 +1,61 @@
 const TemplateService = require('../helpers/templateService');
+const CommentsRepository = require('../repositories/commentsRepository');
 
 class CommentsService extends TemplateService {
-  constructor(comments) {
+  constructor() {
     super();
-    this._comments = comments;
+    this._repository = new CommentsRepository();
+    this._commentsProperties = ['id', 'newsId', 'author', 'content', 'created_at'];
   }
 
-  getComments(newsId, isNewsExist) {
+  async getComments(newsId) {
     let message = '';
-    const errors = isNewsExist(newsId);
-    const data = this._comments.filter((c) => c.newsId === newsId);
-    if (!data.length) message = 'There are no comments.';
+    const errors = [];
+    let data = [];
 
-    return this.createResponse({ data, message, errors });
-  }
+    try {
+      data = await this._repository.getComments(newsId);
+    } catch (e) {
+      errors.push(e.message);
+    }
 
-  addComment(comment, isNewsExist) {
-    let message = '';
-    const errors = isNewsExist(comment.newsId);
-    !errors.length
-      && this._validate(comment).length
-      && errors.push(this._validate(comment));
-
-    const data = {
-      id: this.setId(),
-      ...comment,
-    };
-
-    if (!errors.length) {
-      this._comments.push(data);
-      message = 'Comment was added correctly.';
+    if (!data.length) {
+      data = [];
+      message = 'There are no comments.';
     }
 
     return this.createResponse({ data, message, errors });
   }
 
-  removeComment(id) {
+  async addComment(comment) {
     let message = '';
-    const errors = this._isExist(id);
+    const errors = this._validate(comment);
     let data = [];
 
+    !this.isProperData(this._commentsProperties, comment) && errors.push('Additional property was added.');
+
     if (!errors.length) {
-      data = this._comments.filter((c) => c.id === id);
-      this._comments = this._comments.filter((c) => c.id !== id);
+      try {
+        data = await this._repository.addComment(comment);
+        message = 'Comment was added correctly.';
+      } catch (e) {
+        errors.push(e.message);
+      }
+    }
+
+    return this.createResponse({ data, message, errors });
+  }
+
+  async removeComment(id) {
+    let message = '';
+    const errors = [];
+    let data = [];
+
+    try {
+      data = await this._repository.removeComment(id);
       message = 'Comment was removed correctly';
+    } catch (e) {
+      errors.push(e.message);
     }
 
     return this.createResponse({ data, message, errors });
@@ -62,15 +74,6 @@ class CommentsService extends TemplateService {
       errors.push('No comment author.');
     } else if (author.length === 0) errors.push('Author length can not be empty.');
     else if (author.length > 50) errors.push('Author length can not be longer than 50.');
-
-    return errors;
-  }
-
-  _isExist(id) {
-    const errors = [];
-
-    if (!id) errors.push('Id does not exist.');
-    if (!this._comments.some((n) => n.id === id)) errors.push('Comment with given id does not exist.');
 
     return errors;
   }

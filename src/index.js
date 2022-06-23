@@ -7,7 +7,6 @@ const handlebars = require('express-handlebars');
 
 const dirHelper = require('./helpers/dirHelper');
 const API = require('./helpers/API');
-const NewsCommentsFacade = require('./facades/newsCommentsFacade');
 
 const newsRouter = require('./routes/api/newsRouter');
 const commentsRouter = require('./routes/api/commentsRouter');
@@ -43,7 +42,6 @@ app.use(cors());
 app.options('*', cors());
 
 global.api = new API(process.env.API_URL);
-global.newsCommentsFacade = new NewsCommentsFacade();
 
 app.use('/api/news', newsRouter);
 app.use('/api/comments', commentsRouter);

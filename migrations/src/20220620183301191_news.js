@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 const { generateId } = require('../helpers/generateId');
+const { randomInt } = require('../helpers/randomInt');
 
 const initialNews = new Array(10);
 
@@ -12,7 +13,7 @@ for (let i = 0; i < initialNews.length; i++) {
     content: 'The longest content lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ',
     description: 'The longest description lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lo',
     author: '1',
-    category: '1',
+    category: randomInt(1, 5),
   };
 }
 

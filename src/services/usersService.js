@@ -2,9 +2,8 @@ const TemplateService = require('../helpers/templateService');
 const UsersRepository = require('../repositories/usersRepository');
 
 class NewsService extends TemplateService {
-  constructor(users) {
+  constructor() {
     super();
-    this._users = users;
     this._repository = new UsersRepository();
   }
 

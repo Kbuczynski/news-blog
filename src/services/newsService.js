@@ -2,10 +2,9 @@ const TemplateService = require('../helpers/templateService');
 const NewsRepository = require('../repositories/newsRepository');
 
 class NewsService extends TemplateService {
-  constructor(news) {
+  constructor() {
     super();
     this._repository = new NewsRepository();
-    this._news = news || [];
     this._newsProperties = ['id', 'title', 'header', 'content', 'description', 'author', 'category', 'created_at'];
   }
 
@@ -108,12 +107,6 @@ class NewsService extends TemplateService {
     } else if (description.length === 0) errors.push('Description length can not be empty.');
     else if (description.length > 200) errors.push('Description length can not be longer than 200.');
 
-    return errors;
-  }
-
-  isExist(id) {
-    const errors = [];
-    if (!id || !this._news.some((n) => n.id === id)) errors.push('News with given id does not exist.');
     return errors;
   }
 }

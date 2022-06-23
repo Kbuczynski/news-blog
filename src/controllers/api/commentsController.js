@@ -1,10 +1,13 @@
 /* eslint-disable no-console, no-undef */
+const CommentsService = require('../../services/commentsService');
+
+const commentsService = new CommentsService();
 
 // TODO: handle nested comments
 
-exports.getComments = (req, res) => {
+exports.getComments = async (req, res) => {
   try {
-    const response = newsCommentsFacade.getComments(req.params.newsId);
+    const response = await commentsService.getComments(req.params.newsId);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);
@@ -12,9 +15,9 @@ exports.getComments = (req, res) => {
   }
 };
 
-exports.addComment = (req, res) => {
+exports.addComment = async (req, res) => {
   try {
-    const response = newsCommentsFacade.addComment(req.body);
+    const response = await commentsService.addComment(req.body);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);
@@ -22,9 +25,9 @@ exports.addComment = (req, res) => {
   }
 };
 
-exports.removeComment = (req, res) => {
+exports.removeComment = async (req, res) => {
   try {
-    const response = newsCommentsFacade.removeComment(req.params.id);
+    const response = await commentsService.removeComment(req.params.id);
     res.status(200).send(response);
   } catch (err) {
     console.error(err.message);

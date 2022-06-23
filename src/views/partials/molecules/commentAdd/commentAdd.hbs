@@ -1,7 +1,7 @@
 <form class="comment-add">
     <div class="comment-add__inputs">
         {{> input id="comment-content" label="Enter comment" type="text" placeholder="e.g. This news was awesome!"}}
-        {{> input id="comment-author" label="Enter your name" type="text" placeholder="e.g. John Doe" value=user.login}}
+        <div class="hide">{{> input id="comment-author" label="Enter your name" type="text" placeholder="e.g. John Doe" value=user}}</div>
     </div>
     {{> button class="comment-add__submit" type="submit" text="Add comment"}}
 </form>

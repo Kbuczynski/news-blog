@@ -13,7 +13,11 @@ async function articleController(req, res) {
   const user = loginCookie ? (await api.get('users')).data.filter((u) => u.id === loginCookie.split('=')[1]) : [];
 
   const comments = await api.get(`comments/${req.params.id}`);
-  const commentsData = comments.data.map((c) => (c.author === user[0]?.login ? { ...c, isYourComment: true } : c));
+  const commentsData = comments.data.map((c) => (
+    c.author === user[0]?.login
+      ? { ...c, created_at: new Date(c?.created_at).toUTCString(), isYourComment: true }
+      : { ...c, created_at: new Date(c?.created_at).toUTCString() }
+  ));
 
   const shouldEdit = !!req.query.edit && user[0]?.id === news.data[0]?.author;
   const shouldCreate = !!req.query.create && user.length;

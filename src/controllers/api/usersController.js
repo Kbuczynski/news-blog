@@ -1,9 +1,8 @@
 /* eslint-disable no-console */
 
 const UsersService = require('../../services/usersService');
-const { initialUsers } = require('../../data/initialUsers');
 
-const usersService = new UsersService(initialUsers);
+const usersService = new UsersService();
 
 exports.getAllUsers = async (_, res) => {
   try {

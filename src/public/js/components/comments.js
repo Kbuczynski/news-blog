@@ -55,6 +55,7 @@ class Comments {
     e.preventDefault();
     const content = this._base.querySelector('#comment-content');
     const author = this._base.querySelector('#comment-author');
+    const baseMessage = this._base.querySelector('#comment-message');
 
     const response = await api.post('comments/add', {
       newsId: this.newsId,
@@ -66,9 +67,14 @@ class Comments {
       this._formMessage.classList.add('info--error');
       this._createMessage(response.errors, this._formMessage);
     } else {
+      baseMessage.classList.add('hide');
       this._formMessage.classList.remove('info--error');
       this._createMessage(response.message, this._formMessage);
-      this._createComment(response.data, this._commentsWrapper);
+
+      const comments = await api.get(`comments/${this.newsId}`);
+      const newComment = comments.data[comments.data.length - 1];
+
+      this._createComment(newComment, this._commentsWrapper);
 
       content.value = '';
       if (!author.hasAttribute('disabled')) author.value = '';
@@ -84,6 +90,7 @@ class Comments {
   async _deleteComment(e) {
     const currentComment = e.target.parentElement;
     const commentId = currentComment.getAttribute('comment-id');
+    const baseMessage = this._base.querySelector('#comment-message');
 
     const response = await api.delete(`comments/remove/${commentId}`);
 
@@ -93,6 +100,8 @@ class Comments {
     } else {
       currentComment.remove();
       this._addEvents();
+      const comments = await api.get(`comments/${this.newsId}`);
+      if (!comments.data.length) baseMessage.classList.remove('hide');
     }
   }
 }
