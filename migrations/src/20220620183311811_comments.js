@@ -18,6 +18,7 @@ exports.up = (pgm) => {
       type: 'text',
       notNull: true,
       references: '"users"',
+      onDelete: 'cascade',
     },
     content: {
       type: 'text',

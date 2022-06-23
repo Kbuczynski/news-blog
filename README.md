@@ -1,23 +1,35 @@
 # news-blog
 
+## Features
+
+* REST API
+    * CRUD operations on the posts
+    * getting / adding / removing the comments
+    * getting / adding / validating the users
+* Authorization using cookie protection
+* Data has kept in database
+* Migrations with initial data
+* Server side rendering using handlebars
+* Github pipelines to unify code style (eslint & stylint) and run unit tests
+* Setup unit tests with Jest framework
+* Dockerizing the application (including admin panel to db)
 
 ## Setup
 
-```sh
-npm i && npm start
-```
-## Development
+First copy all `.env.template` files and called them `.env` and fill in necessary variables. Next install all dependencies in `.` and `/migrations` folders using `npm i` command.
 
-### Using Docker
+### Development
+
+#### Build using Docker
 
 ```sh
 npm run dev:docker:build
 ```
 
-### Using npm scripts
+#### Start using Docker
 
 ```sh
-npm i && npm run dev
+npm run dev:docker
 ```
 
 ## REST API
@@ -45,11 +57,6 @@ npm i && npm run dev
 | register | POST | /api/users/register | login, password
 | login  | POST | /api/users/login | login, password
 
-## Packages
+## Database model
 
-| Package | README |
-| ------- | ------ |
-| Express | https://www.npmjs.com/package/express |
-| Handlebars | https://www.npmjs.com/package/handlebars |
-| SASS | https://www.npmjs.com/package/node-sass |
-| Jest | https://www.npmjs.com/package/jest
+![database model](./docs/news-blog-db-model.png)
